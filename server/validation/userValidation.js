@@ -52,31 +52,3 @@ exports.validateRegister = [
     next();
   },
 ];
-
-// exports.validateLogin = [
-//   check("email")
-//     .trim()
-//     .not()
-//     .isEmpty()
-//     .withMessage("Email is required")
-//     .bail()
-//     .isEmail()
-//     .withMessage("Email is not valid")
-//     .normalizeEmail()
-//     .bail(),
-//   check("password")
-//     .trim()
-//     .not()
-//     .isEmpty()
-//     .withMessage("Password is required")
-//     .bail(),
-//   (req, res, next) => {
-//     const errors = validationResult(req);
-
-//     let errArr = [];
-
-//     errors.array().map((s) => errArr.push(s.msg));
-//     if (!errors.isEmpty()) return res.status(422).json({ message: errArr });
-//     next();
-//   },
-// ];
