@@ -10,6 +10,11 @@ const noteSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    pinned: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
   },
   { timestamps: true }

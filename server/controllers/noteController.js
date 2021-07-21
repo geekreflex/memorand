@@ -42,7 +42,20 @@ const deleteNote = asyncHandler(async (req, res) => {
 });
 
 const updateNote = asyncHandler(async (req, res) => {
-  //
+  const { title, body } = req.body;
+
+  const note = await Note.findById(req.params.id);
+
+  if (note) {
+    note.title = title;
+    not.body = body;
+
+    const updatedNote = await note.save();
+    res.json(updatedNote);
+  } else {
+    res.status(404);
+    throw new Error("Note not found");
+  }
 });
 
 module.exports = { createNote, getUserNote, deleteNote, updateNote };
