@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { loginUser } from "../features/user/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import Error from "../components/Error";
 
-const Login = ({ history }) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
-  const { error, isAuthenticated } = useSelector((state) => state.user);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push("/");
-    }
-  });
 
   const onSubmitLogin = (event) => {
     event.preventDefault();
@@ -28,8 +21,8 @@ const Login = ({ history }) => {
 
   return (
     <div>
+      <Error />
       <h1>Login Page</h1>
-      <div>{error ? error.map((e) => <p>{e}</p>) : ""}</div>
       <form onSubmit={onSubmitLogin}>
         <div>
           <input

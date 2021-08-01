@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../features/user/userSlice";
+import Error from "../components/Error";
 
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -27,8 +28,8 @@ const Register = () => {
 
   return (
     <div>
+      <Error />
       <h1>Register Page</h1>
-      <div>{error ? error.map((e) => <p>{e}</p>) : ""}</div>
       <form onSubmit={onSubmitRegister}>
         <div>
           <input

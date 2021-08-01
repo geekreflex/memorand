@@ -9,7 +9,9 @@ import "./App.css";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
+import Home from "./views/Home";
 import Header from "./components/Header";
+import { PublicRoute, ProtectedRoute } from "./helper/authRoute";
 
 function App() {
   return (
@@ -18,9 +20,10 @@ function App() {
         <Header />
         <div className="container">
           <Switch>
-            <Route exact path="/login" component={Login} />
+            <PublicRoute exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
-            <Route exact path="/" component={Dashboard} />
+            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
         </div>

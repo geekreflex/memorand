@@ -1,18 +1,15 @@
 import React from "react";
-import Hamburger from "./Hamburger";
-import Search from "./Search";
+import Logout from "./Logout";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const isAuth = useSelector((state) => state.user.isAuthenticated);
+
   return (
     <header>
       <div className="container">
-        <div className="header-wrap">
-          <div className="hd-wrap-left">
-            <Hamburger />
-            <Search />
-          </div>
-          <div className="hd-wrap-right">navs</div>
-        </div>
+        <h3>Header Component</h3>
+        {isAuth ? <Logout /> : ""}
       </div>
     </header>
   );

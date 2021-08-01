@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const user = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
+import { token } from "../../utils/token";
 
 const initialState = {
   notes: [],
@@ -26,14 +23,17 @@ export const createNote = createAsyncThunk(
       console.log(data);
     } catch (error) {
       console.log(error.response);
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
     }
   }
 );
 
 export const getNotes = createAsyncThunk("notes/getNotes", async (thunkAPI) => {
   try {
-    const { token } = user;
-
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,

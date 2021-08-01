@@ -6,7 +6,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h1>{user.firstName.toUpperCase()} Dashboard</h1>
+      <h1>{user.firstName?.toUpperCase()} Dashboard</h1>
     </div>
   );
 };

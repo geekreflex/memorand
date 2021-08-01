@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../utils/baseUrl";
 
 const initialState = {
   user: {},
@@ -7,8 +8,6 @@ const initialState = {
   error: null,
   isAuthenticated: false,
 };
-
-const BASE_URL = `http://localhost:7000/api/users`;
 
 export const registerUser = createAsyncThunk(
   "user/registerUser",
@@ -21,7 +20,7 @@ export const registerUser = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        `${BASE_URL}/register`,
+        `${BASE_URL}/api/users/register`,
         payload,
         config
       );
@@ -47,7 +46,11 @@ export const loginUser = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.post(`${BASE_URL}/login`, payload, config);
+      const { data } = await axios.post(
+        `${BASE_URL}/api/users/login`,
+        payload,
+        config
+      );
 
       return data;
     } catch (error) {
@@ -72,6 +75,10 @@ export const userSlice = createSlice({
         state.isAuthenticated = true;
         state.user = userInfo;
       }
+    },
+    logoutUser() {
+      localStorage.removeItem("userInfo");
+      window.location.href = "/";
     },
   },
   extraReducers: (builder) => {
@@ -107,6 +114,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { getUserInfoFromStorage } = userSlice.actions;
+export const { getUserInfoFromStorage, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;
