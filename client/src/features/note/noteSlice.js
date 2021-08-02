@@ -61,7 +61,7 @@ export const getNotes = createAsyncThunk("notes/getNotes", async (thunkAPI) => {
   }
 });
 
-export const setColor = createAsyncThunk(
+export const setNoteColor = createAsyncThunk(
   "notes/setColor",
   async (payload, thubkAPI) => {
     try {
@@ -71,8 +71,8 @@ export const setColor = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.post(
-        `${BASE_URL}/api/notes`,
+      const { data } = await axios.put(
+        `${BASE_URL}/api/notes/${payload.noteId}/color`,
         payload,
         config
       );
@@ -85,7 +85,15 @@ export const setColor = createAsyncThunk(
 export const notesSlice = createSlice({
   name: "notes",
   initialState,
-  reducers: {},
+  reducers: {
+    setColor(state, action) {
+      const { noteId, color } = action.payload;
+      const existingNote = state.notes.find((note) => note._id === noteId);
+      if (existingNote) {
+        existingNote.color = color;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getNotes.pending, (state) => {
@@ -115,4 +123,5 @@ export const notesSlice = createSlice({
   },
 });
 
+export const { setColor } = notesSlice.actions;
 export default notesSlice.reducer;

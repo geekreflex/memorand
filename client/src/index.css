@@ -9,6 +9,7 @@
   --border-color: #5f6368;
   --text-color: #e8eaed;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --primary-color: #2d2d63;
 }
 
 body {
@@ -42,7 +43,7 @@ code {
 }
 
 .primary {
-  background-color: purple;
+  background-color: var(--primary-color);
   color: var(--text-color);
 }
 
@@ -67,10 +68,17 @@ header {
 
 .note {
   background-color: orange;
-  border: 1px solid var(--border-color);
   color: var(--text-color);
   border-radius: 10px;
   cursor: default;
+}
+
+.bordered {
+  border: 1px solid var(--border-color) !important;
+}
+
+.shade {
+  box-shadow: var(--shadow);
 }
 
 .note-info {
@@ -235,7 +243,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .view-note-wrap {

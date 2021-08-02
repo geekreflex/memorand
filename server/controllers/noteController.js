@@ -17,7 +17,7 @@ const createNote = asyncHandler(async (req, res) => {
 const getUserNote = asyncHandler(async (req, res) => {
   const { _id } = req.user;
 
-  const note = await Note.find({ user: _id }).sort({ updatedAt: -1 });
+  const note = await Note.find({ user: _id }).sort({ createdAt: -1 });
 
   if (note) {
     return res.status(200).json(note);
@@ -58,4 +58,27 @@ const updateNote = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { createNote, getUserNote, deleteNote, updateNote };
+const setNoteColor = asyncHandler(async (req, res) => {
+  const { color } = req.body;
+
+  console.log(req.body);
+
+  const note = await Note.findById(req.params.id);
+
+  if (note) {
+    note.color = color;
+
+    await note.save();
+  } else {
+    res.status(404);
+    throw new Error("Error occured");
+  }
+});
+
+module.exports = {
+  createNote,
+  getUserNote,
+  deleteNote,
+  updateNote,
+  setNoteColor,
+};
