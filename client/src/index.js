@@ -7,10 +7,8 @@ import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 
 import { getUserInfoFromStorage } from "./features/user/userSlice";
-import { getNotes } from "./features/note/noteSlice";
 
 store.dispatch(getUserInfoFromStorage());
-store.dispatch(getNotes());
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { registerUser } from "../features/user/userSlice";
 import Error from "../components/Error";
 
@@ -8,8 +8,6 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const error = useSelector((state) => state.user.error);
 
   const dispatch = useDispatch();
 

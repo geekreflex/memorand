@@ -17,7 +17,7 @@ const createNote = asyncHandler(async (req, res) => {
 const getUserNote = asyncHandler(async (req, res) => {
   const { _id } = req.user;
 
-  const note = await Note.find({ user: _id });
+  const note = await Note.find({ user: _id }).sort({ updatedAt: -1 });
 
   if (note) {
     return res.status(200).json(note);

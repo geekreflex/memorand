@@ -1,12 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import NoteList from "../components/NoteList";
+import { getNotes } from "../features/note/noteSlice";
+import NewNoteButton from "../components/NewNoteButton";
+import NewNoteModal from "../components/NewNoteModal";
+import ViewNote from "../components/ViewNote";
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNotes());
+  });
 
   return (
     <div>
-      <h1>{user.firstName?.toUpperCase()} Dashboard</h1>
+      <NoteList />
+      <NewNoteButton />
+      <NewNoteModal />
+      <ViewNote />
     </div>
   );
 };
