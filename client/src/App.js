@@ -19,7 +19,7 @@ function App() {
       <div className="App">
         <Header />
         <SideNav />
-        <div className="container">
+        <div className="container margintop">
           <Switch>
             <PublicRoute exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />

@@ -61,9 +61,30 @@ export const getNotes = createAsyncThunk("notes/getNotes", async (thunkAPI) => {
   }
 });
 
+export const pinNote = createAsyncThunk(
+  "notes/pinNote",
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      await axios.pu(
+        `${BASE_URL}/api/notes/${payload.noteId}/pin`,
+        payload.pin,
+        config
+      );
+    } catch (error) {
+      console.log(error.response);
+    }
+  }
+);
+
 export const setNoteColor = createAsyncThunk(
   "notes/setColor",
-  async (payload, thubkAPI) => {
+  async (payload, thunkAPI) => {
     try {
       const config = {
         headers: {
@@ -78,6 +99,11 @@ export const setNoteColor = createAsyncThunk(
       );
     } catch (error) {
       console.error(error.response);
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
     }
   }
 );

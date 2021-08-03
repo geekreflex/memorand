@@ -11,10 +11,7 @@ const NewNoteModal = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const removeModal = (e) => {
-    console.log(e.target);
-    e.stopPropagation();
-    e.preventDefault();
+  const removeModal = () => {
     dispatch(closeModal());
   };
 
@@ -33,11 +30,12 @@ const NewNoteModal = () => {
   };
 
   return (
-    <div
-      className={modal ? "new-note-modal" : "new-note-modal hidden-modal"}
-      onClick={removeModal}
-    >
+    <div className={modal ? "new-note-modal" : "new-note-modal hidden-modal"}>
+      <div className="overlay" onClick={removeModal}></div>
       <div className="new-note-wrap">
+        <div className="new-note-hd">
+          <h4>Flex Your New Note</h4>
+        </div>
         <div className="form-wrap">
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="form-control">

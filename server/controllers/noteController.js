@@ -61,17 +61,32 @@ const updateNote = asyncHandler(async (req, res) => {
 const setNoteColor = asyncHandler(async (req, res) => {
   const { color } = req.body;
 
-  console.log(req.body);
-
   const note = await Note.findById(req.params.id);
 
   if (note) {
     note.color = color;
 
     await note.save();
+    res.json({ message: "Color changed" });
   } else {
     res.status(404);
-    throw new Error("Error occured");
+    throw new Error("Error occured (Color)");
+  }
+});
+
+const pinNote = asyncHandler(async (req, res) => {
+  const { pin } = req.body;
+
+  const note = await Note.findById(req.params.id);
+
+  if (note) {
+    note.pinned = pin;
+
+    await note.save();
+    res.json({ message: "Note pinned" });
+  } else {
+    res.status(404);
+    throw new Error("Error Occured (Pin)");
   }
 });
 
@@ -81,4 +96,5 @@ module.exports = {
   deleteNote,
   updateNote,
   setNoteColor,
+  pinNote,
 };

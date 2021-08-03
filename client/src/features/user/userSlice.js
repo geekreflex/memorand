@@ -91,7 +91,7 @@ export const userSlice = createSlice({
         state.user = action.payload;
         state.error = null;
         localStorage.setItem("userInfo", JSON.stringify(action.payload));
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.status = "idle";
@@ -105,7 +105,7 @@ export const userSlice = createSlice({
         state.user = action.payload;
         state.error = null;
         localStorage.setItem("userInfo", JSON.stringify(action.payload));
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "idle";
