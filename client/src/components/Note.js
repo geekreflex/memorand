@@ -1,5 +1,6 @@
 import React from "react";
 import { IoColorPaletteOutline, IoEllipsisVertical } from "react-icons/io5";
+import { FaThumbtack } from "react-icons/fa";
 import ColorPalette from "./ColorPalette";
 
 const Note = ({ note }) => {
@@ -17,6 +18,9 @@ const Note = ({ note }) => {
       }}
       onClick={showNote}
     >
+      <div className="note-pin">
+        <FaThumbtack />
+      </div>
       <div className="note-info">
         <h4>{note.title}</h4>
         <p>{newShortNote}</p>
@@ -26,7 +30,7 @@ const Note = ({ note }) => {
           <IoColorPaletteOutline />
           <ColorPalette noteId={note._id} color={note.color} />
         </div>
-        <div>
+        <div className="color-more">
           <IoEllipsisVertical />
         </div>
       </div>

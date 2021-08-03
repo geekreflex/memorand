@@ -1,6 +1,8 @@
 import React from "react";
 import Logout from "./Logout";
 import { useSelector } from "react-redux";
+import Search from "./Search";
+import Account from "./Account";
 
 const Header = () => {
   const isAuth = useSelector((state) => state.user.isAuthenticated);
@@ -8,8 +10,10 @@ const Header = () => {
   return (
     <header>
       <div className="container">
-        <h3>Header Component</h3>
-        {isAuth ? <Logout /> : ""}
+        <div className="hd-wrap">
+          <Search />
+          <Account />
+        </div>
       </div>
     </header>
   );

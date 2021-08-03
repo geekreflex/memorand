@@ -10,6 +10,7 @@ import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
 import Home from "./views/Home";
 import Header from "./components/Header";
+import SideNav from "./components/SideNav";
 import { PublicRoute, ProtectedRoute } from "./helper/authRoute";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Router>
       <div className="App">
         <Header />
+        <SideNav />
         <div className="container">
           <Switch>
             <PublicRoute exact path="/login" component={Login} />
