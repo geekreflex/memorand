@@ -17,10 +17,14 @@ const Account = () => {
 
   return (
     <div className="acct">
-      <div className="acct-user-circle" onClick={toggleAcctWrap}></div>
+      <div className="acct-user-circle" onClick={toggleAcctWrap}>
+        {user.firstName.charAt(0).toUpperCase()}
+      </div>
       <div className={acct ? "acct-wrap" : "acct-wrap hidden"}>
         <div className="acct-info">
-          <div className="acct-pic"></div>
+          <div className="acct-pic">
+            {user.firstName.charAt(0).toUpperCase()}
+          </div>
           <div className="acct-user">
             <h3>{`${user.firstName} ${user.lastName}`}</h3>
             <p>{user.email}</p>

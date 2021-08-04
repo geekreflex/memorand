@@ -4,7 +4,7 @@ const noteSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      default: "Untitled",
+      required: true,
     },
     body: {
       type: String,

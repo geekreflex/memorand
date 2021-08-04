@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 
 const HeaderLink = () => {
   return (
-    <div>
-      <div>
-        <ul>
-          <li>
-            <Link to="about">About Us</Link>
-          </li>
-          <li>
-            <Link to="about">Contribute</Link>
-          </li>
-        </ul>
-      </div>
+    <div className="hd-link-wrap">
+      <ul className="hd-link">
+        <li>
+          <Link to="about">About Us</Link>
+        </li>
+        <li>
+          <Link to="about">Contribute</Link>
+        </li>
+      </ul>
+
       <div className="auth-link">
         <Link to="/login">Sign In</Link>
-        <Link to="/register">Sign Up</Link>
+        <Link className="btn primary" to="/register">
+          Sign Up
+        </Link>
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const SideNav = () => {
             <div className="title">Notes</div>
           </div>
         </Link>
-        <Link to="trash">
+        <Link to="/trash">
           <div className="nav-icon">
             <IoTrashBinOutline />
             <div className="title">Trash</div>

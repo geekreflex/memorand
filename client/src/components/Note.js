@@ -1,13 +1,21 @@
 import React from "react";
-import { IoColorPaletteOutline, IoEllipsisVertical } from "react-icons/io5";
 import { FaThumbtack } from "react-icons/fa";
-import ColorPalette from "./ColorPalette";
+import { useDispatch } from "react-redux";
+import { storeNote } from "../features/note/noteSlice";
+import { toggleNoteModal } from "../features/action/actionSlice";
+import NoteAction from "./NoteAction";
 
 const Note = ({ note }) => {
-  let shortNote = note.body.slice(0, 40);
+  let shortNote = note.body.slice(0, 70);
   let newShortNote = shortNote.slice(0, shortNote.lastIndexOf(" "));
 
-  const showNote = () => {};
+  const dispatch = useDispatch();
+
+  const showNote = (e) => {
+    e.stopPropagation();
+    dispatch(storeNote(note._id));
+    dispatch(toggleNoteModal());
+  };
 
   return (
     <div
@@ -16,7 +24,7 @@ const Note = ({ note }) => {
         backgroundColor: `${note.color}`,
         border: `1px solid ${note.color}`,
       }}
-      onClick={showNote}
+      onClick={(e) => showNote(e)}
     >
       <div className="note-pin">
         <FaThumbtack />
@@ -25,15 +33,7 @@ const Note = ({ note }) => {
         <h4>{note.title}</h4>
         <p>{newShortNote}</p>
       </div>
-      <div className="note-action">
-        <div className="color-palette">
-          <IoColorPaletteOutline />
-          <ColorPalette noteId={note._id} color={note.color} />
-        </div>
-        <div className="color-more">
-          <IoEllipsisVertical />
-        </div>
-      </div>
+      <NoteAction note={note} className="note-hidden" />
     </div>
   );
 };

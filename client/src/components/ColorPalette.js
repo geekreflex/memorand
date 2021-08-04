@@ -17,6 +17,7 @@ const ColorPalette = ({ noteId, color }) => {
   const dispatch = useDispatch();
 
   const getColor = (e) => {
+    e.stopPropagation();
     let payload = {
       color: e.target.dataset.color,
       noteId,

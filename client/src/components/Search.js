@@ -9,7 +9,7 @@ const Search = () => {
       </div>
       <form>
         <div>
-          <input placeholder="Hello" />
+          <input placeholder="Hello, We're working on it" />
         </div>
       </form>
       <div className="search-ic">

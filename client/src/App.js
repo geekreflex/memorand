@@ -8,6 +8,7 @@ import {
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Dashboard from "./views/Dashboard";
+import Trash from "./views/Trash";
 import Home from "./views/Home";
 import Header from "./components/Header";
 import SideNav from "./components/SideNav";
@@ -22,8 +23,9 @@ function App() {
         <div className="container margintop">
           <Switch>
             <PublicRoute exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
+            <PublicRoute exact path="/register" component={Register} />
             <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+            <ProtectedRoute exact path="/Trash" component={Trash} />
             <Route exact path="/" component={Home} />
             <Redirect to="/" />
           </Switch>

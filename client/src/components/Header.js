@@ -6,6 +6,7 @@ import Account from "./Account";
 import HeaderLink from "./HeaderLink";
 import { IoMenuSharp } from "react-icons/io5";
 import { toggleNav } from "../features/action/actionSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const isAuth = useSelector((state) => state.user.isAuthenticated);
@@ -22,6 +23,9 @@ const Header = () => {
           {isAuth ? (
             <div className="hd-wrap">
               <div className="hd-wrap-left">
+                <Link to="/" className="logo">
+                  N
+                </Link>
                 <div className="hd-menu-ic" onClick={toggleSideNav}>
                   <IoMenuSharp />
                 </div>
