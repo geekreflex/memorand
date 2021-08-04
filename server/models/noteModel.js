@@ -19,6 +19,10 @@ const noteSchema = mongoose.Schema(
       type: String,
       default: "#202124",
     },
+    deleted: {
+      type: Boolean,
+      default: false,
+    },
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
   },
   { timestamps: true }
