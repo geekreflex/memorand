@@ -7,6 +7,7 @@
 
 :root {
   --bg-color: #202124;
+  --bg-color-grey: #333333;
   --border-color: #5f6368;
   --text-color: #ddd;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
@@ -284,6 +285,29 @@ a:hover {
   cursor: pointer;
 }
 
+.color-more-menu {
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow);
+  padding: 5px 0;
+  display: none;
+}
+
+.color-more-menu span {
+  display: block;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.color-more-menu span:hover {
+  background-color: var(--bg-color-grey);
+}
+
 .color-palette:hover,
 .note-pin:hover,
 .color-more:hover {
@@ -295,12 +319,17 @@ a:hover {
   visibility: visible;
 }
 
-.color-palette {
+.color-palette,
+.color-more {
   position: relative;
 }
 
 .color-palette:hover .note-color-palette {
   display: grid;
+}
+
+.color-more:hover .color-more-menu {
+  display: flex;
 }
 
 .note-color-palette {

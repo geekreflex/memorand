@@ -11,6 +11,10 @@ const NoteAction = ({ note, viewNoteClass }) => {
       </div>
       <div className="color-more">
         <IoEllipsisVertical />
+        <div className="color-more-menu">
+          <span>Delete</span>
+          <span>Favorite</span>
+        </div>
       </div>
     </div>
   );
