@@ -11,9 +11,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     dispatch(getNotes());
-  });
-
-  console.log(user);
+  }, [dispatch]);
 
   return (
     <div className="dashboard-main">

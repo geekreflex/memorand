@@ -109,8 +109,8 @@ export const setNoteColor = createAsyncThunk(
   }
 );
 
-export const updateNote = createAsyncThunk(
-  "notes/updateNote",
+export const updateNoteAsync = createAsyncThunk(
+  "notes/updateNoteAsync",
   async (payload, thunkAPI) => {
     try {
       const config = {
@@ -184,6 +184,14 @@ export const notesSlice = createSlice({
         state.note = existingNote;
       }
     },
+    updateNote(state, action) {
+      const { data, noteId } = action.payload;
+      const existingNote = state.notes.find((note) => note._id === noteId);
+      if (existingNote) {
+        existingNote.title = data.title;
+        existingNote.body = data.body;
+      }
+    },
     clearNote(state) {
       state.note = {};
     },
@@ -224,6 +232,6 @@ export const notesSlice = createSlice({
   },
 });
 
-export const { setColor, storeNote, clearNote, toggleTrashNote } =
+export const { setColor, storeNote, clearNote, toggleTrashNote, updateNote } =
   notesSlice.actions;
 export default notesSlice.reducer;

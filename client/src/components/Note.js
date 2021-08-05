@@ -10,7 +10,7 @@ import { toggleNoteModal } from "../features/action/actionSlice";
 import NoteAction from "./NoteAction";
 
 const Note = ({ note, trash }) => {
-  let shortNote = note.body.slice(0, 70);
+  let shortNote = note.body.slice(0, 50);
   let newShortNote = shortNote.slice(0, shortNote.lastIndexOf(" "));
 
   const dispatch = useDispatch();

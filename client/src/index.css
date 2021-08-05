@@ -274,6 +274,8 @@ a:hover {
 
 .note-info p {
   font-size: 14px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .note-action {
@@ -481,6 +483,7 @@ a:hover {
   min-width: 550px;
   max-width: 550px;
   z-index: 10;
+  box-shadow: var(--shadow);
 }
 
 .view-note-info {
@@ -489,6 +492,8 @@ a:hover {
   overflow-y: scroll;
   max-height: 650px;
   padding: 20px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .vni-title,
@@ -751,4 +756,19 @@ a:hover {
 .trash-wrap p {
   color: var(--text-color);
   font-size: 25px;
+}
+
+.updated {
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+}
+
+.updated span {
+  margin-right: 10px;
+}
+
+.updated div {
+  font-weight: bold;
 }

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleNoteModal } from "../features/action/actionSlice";
-import { clearNote, updateNote } from "../features/note/noteSlice";
+import {
+  clearNote,
+  updateNote,
+  updateNoteAsync,
+} from "../features/note/noteSlice";
 import NoteAction from "./NoteAction";
+import TimeAgo from "./TimeAgo";
 
 const ViewNote = () => {
   const { note } = useSelector((state) => state.notes);
@@ -34,8 +39,9 @@ const ViewNote = () => {
       noteId: note._id,
     };
     console.log("saved");
-    // console.log(body);
+    console.log(document.querySelector(".vni-body").innerHTML);
     dispatch(updateNote(payload));
+    dispatch(updateNoteAsync(payload));
   };
 
   return (
@@ -49,6 +55,10 @@ const ViewNote = () => {
         }}
       >
         <div className="view-note-info">
+          <div className="updated">
+            <span>Edited:</span>
+            <TimeAgo timestamp={note.updatedAt} />
+          </div>
           <div
             contentEditable="true"
             role="textbox"
@@ -71,7 +81,7 @@ const ViewNote = () => {
             className="vni-body"
             suppressContentEditableWarning="true"
             onBlur={saveNoteChanges}
-            onInput={(e) => setBody(e.currentTarget.textContent)}
+            onInput={(e) => setBody(e.currentTarget.innerText)}
           >
             {editBody}
           </div>

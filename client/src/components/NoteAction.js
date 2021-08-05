@@ -3,6 +3,7 @@ import ColorPalette from "./ColorPalette";
 import { toggleTrashNote, trashNoteAsync } from "../features/note/noteSlice";
 import { useDispatch } from "react-redux";
 import { IoColorPaletteOutline, IoEllipsisVertical } from "react-icons/io5";
+import { toggleNoteModal } from "../features/action/actionSlice";
 
 const NoteAction = ({ note, viewNoteClass }) => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const NoteAction = ({ note, viewNoteClass }) => {
     e.stopPropagation();
     dispatch(toggleTrashNote(note._id));
     dispatch(trashNoteAsync(note._id));
+    dispatch(toggleNoteModal());
   };
 
   return (

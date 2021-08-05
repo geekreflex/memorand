@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Note from "../components/Note";
+import { useDispatch } from "react-redux";
+import { getNotes } from "../features/note/noteSlice";
 
 const Trash = () => {
-  const { notes } = useSelector((state) => state.notes);
+  const { notes, status } = useSelector((state) => state.notes);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getNotes());
+  }, [dispatch]);
 
   const trashedNotes = notes.reduce(function (filtered, note) {
     if (note.trashed) {
@@ -11,6 +18,10 @@ const Trash = () => {
     }
     return filtered;
   }, []);
+
+  if (status === "loading") {
+    return <div></div>;
+  }
 
   return (
     <div className="trash-main">
