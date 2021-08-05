@@ -225,9 +225,13 @@ a:hover {
 .note {
   /* background-color: orange !important; */
   color: var(--text-color);
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: default;
   position: relative;
+}
+
+.note:hover {
+  box-shadow: var(--shadow);
 }
 
 .restore-note {
