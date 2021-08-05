@@ -476,14 +476,17 @@ a:hover {
 }
 
 .view-note-wrap {
+  position: relative;
   background-color: var(--bg-color);
   color: var(--text-color);
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  min-width: 550px;
-  max-width: 550px;
+  /* min-width: 360px; */
+  width: 600px;
   z-index: 10;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
 }
 
 .view-note-info {
@@ -492,8 +495,6 @@ a:hover {
   overflow-y: scroll;
   max-height: 650px;
   padding: 20px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
 }
 
 .vni-title,
