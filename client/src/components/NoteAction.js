@@ -1,8 +1,18 @@
 import React from "react";
 import ColorPalette from "./ColorPalette";
+import { trashNote, trashNoteAsync } from "../features/note/noteSlice";
+import { useDispatch } from "react-redux";
 import { IoColorPaletteOutline, IoEllipsisVertical } from "react-icons/io5";
 
 const NoteAction = ({ note, viewNoteClass }) => {
+  const dispatch = useDispatch();
+
+  const addNoteToTrash = (e) => {
+    e.stopPropagation();
+    dispatch(trashNote(note._id));
+    dispatch(trashNoteAsync(note._id));
+  };
+
   return (
     <div className={`note-action ${viewNoteClass}`}>
       <div className="color-palette" onClick={(e) => e.stopPropagation()}>
@@ -12,8 +22,8 @@ const NoteAction = ({ note, viewNoteClass }) => {
       <div className="color-more">
         <IoEllipsisVertical />
         <div className="color-more-menu">
-          <span>Delete</span>
-          <span>Favorite</span>
+          <span onClick={addNoteToTrash}>Delete</span>
+          <span onClick={(e) => e.stopPropagation()}>Favorite</span>
         </div>
       </div>
     </div>

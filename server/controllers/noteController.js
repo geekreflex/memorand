@@ -92,11 +92,28 @@ const pinNote = asyncHandler(async (req, res) => {
   }
 });
 
+const trashNote = asyncHandler(async (req, res) => {
+  const note = await Note.findById(req.params.id);
+
+  console.log(note);
+
+  if (note) {
+    note.trashed = !note.trashed;
+
+    await note.save();
+    res.json({ message: "Note Trashed" });
+  } else {
+    res.status(404);
+    throw new Error("Error Occured (Trash)");
+  }
+});
+
 module.exports = {
   createNote,
   getUserNote,
   deleteNote,
   updateNote,
   setNoteColor,
+  trashNote,
   pinNote,
 };

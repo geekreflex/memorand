@@ -137,6 +137,34 @@ export const updateNote = createAsyncThunk(
   }
 );
 
+export const trashNoteAsync = createAsyncThunk(
+  "notes/updateNote",
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        `${BASE_URL}/api/notes/${payload}/trash`,
+        payload,
+        config
+      );
+
+      console.log(data);
+    } catch (error) {
+      console.error(error.response);
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  }
+);
+
 export const notesSlice = createSlice({
   name: "notes",
   initialState,
@@ -158,6 +186,13 @@ export const notesSlice = createSlice({
     },
     clearNote(state) {
       state.note = {};
+    },
+    trashNote(state, action) {
+      const noteId = action.payload;
+      const existingNote = state.notes.find((note) => note._id === noteId);
+      if (existingNote) {
+        existingNote.trashed = true;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -189,5 +224,5 @@ export const notesSlice = createSlice({
   },
 });
 
-export const { setColor, storeNote, clearNote } = notesSlice.actions;
+export const { setColor, storeNote, clearNote, trashNote } = notesSlice.actions;
 export default notesSlice.reducer;

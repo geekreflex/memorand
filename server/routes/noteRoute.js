@@ -6,6 +6,7 @@ const {
   deleteNote,
   setNoteColor,
   updateNote,
+  trashNote,
   pinNote,
 } = require("../controllers/noteController");
 
@@ -17,6 +18,7 @@ router.post("/", protect, createNote);
 router.get("/", protect, getUserNote);
 router.put("/:id/color", protect, setNoteColor);
 router.put("/:id/pin", protect, pinNote);
+router.put("/:id/trash", protect, trashNote);
 router.put("/:id", protect, updateNote);
 router.delete("/:id", protect, deleteNote);
 

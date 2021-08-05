@@ -19,7 +19,7 @@ const noteSchema = mongoose.Schema(
       type: String,
       default: "#202124",
     },
-    deleted: {
+    trashed: {
       type: Boolean,
       default: false,
     },
