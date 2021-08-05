@@ -187,11 +187,11 @@ export const notesSlice = createSlice({
     clearNote(state) {
       state.note = {};
     },
-    trashNote(state, action) {
+    toggleTrashNote(state, action) {
       const noteId = action.payload;
       const existingNote = state.notes.find((note) => note._id === noteId);
       if (existingNote) {
-        existingNote.trashed = true;
+        existingNote.trashed = !existingNote.trashed;
       }
     },
   },
@@ -224,5 +224,6 @@ export const notesSlice = createSlice({
   },
 });
 
-export const { setColor, storeNote, clearNote, trashNote } = notesSlice.actions;
+export const { setColor, storeNote, clearNote, toggleTrashNote } =
+  notesSlice.actions;
 export default notesSlice.reducer;

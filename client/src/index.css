@@ -163,9 +163,17 @@ header {
   padding: 5px;
 }
 
+.hd-wrap-right {
+  display: flex;
+}
+
 .hd-link-wrap {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.link-wrap {
+  display: flex;
 }
 
 ul {
@@ -215,11 +223,15 @@ a:hover {
 }
 
 .note {
-  /* background-color: orange; */
+  /* background-color: orange !important; */
   color: var(--text-color);
   border-radius: 10px;
   cursor: default;
   position: relative;
+}
+
+.restore-note {
+  padding: 10px;
 }
 
 .bordered {
@@ -250,9 +262,10 @@ a:hover {
 }
 
 .note-info {
-  height: 100px;
+  height: 120px;
   padding: 15px;
   overflow: hidden;
+  line-height: 1.5;
 }
 
 .note-info h4 {
@@ -581,6 +594,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-left: 50px;
 }
 
 .acct-user-circle {

@@ -14,7 +14,7 @@ const Trash = () => {
 
   return (
     <div className="trash-main">
-      {trashedNotes ? (
+      {trashedNotes.length ? (
         <div className="trash-notes note-list">
           {trashedNotes.map((note) => (
             <Note key={note._id} note={note} trash={true} />

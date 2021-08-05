@@ -32,6 +32,14 @@ const Header = () => {
                 <Search />
               </div>
               <div className="hd-wrap-right">
+                <ul className="hd-link">
+                  <li>
+                    <Link to="/about">About Us</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Contribute</Link>
+                  </li>
+                </ul>
                 <Account />
               </div>
             </div>
