@@ -23,7 +23,6 @@ const NoteAction = ({ note, viewNoteClass }) => {
         <IoEllipsisVertical />
         <div className="color-more-menu">
           <span onClick={addNoteToTrash}>Delete</span>
-          <span onClick={(e) => e.stopPropagation()}>Favorite</span>
         </div>
       </div>
     </div>

@@ -13,22 +13,27 @@ import Home from "./views/Home";
 import Header from "./components/Header";
 import SideNav from "./components/SideNav";
 import { PublicRoute, ProtectedRoute } from "./helper/authRoute";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { nav } = useSelector((state) => state.action);
+
   return (
     <Router>
       <div className="App">
         <Header />
         <SideNav />
         <div className="container margintop">
-          <Switch>
-            <PublicRoute exact path="/login" component={Login} />
-            <PublicRoute exact path="/register" component={Register} />
-            <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-            <ProtectedRoute exact path="/Trash" component={Trash} />
-            <Route exact path="/" component={Home} />
-            <Redirect to="/" />
-          </Switch>
+          <div style={{ marginLeft: nav ? "80px" : "0px" }}>
+            <Switch>
+              <PublicRoute exact path="/login" component={Login} />
+              <PublicRoute exact path="/register" component={Register} />
+              <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+              <ProtectedRoute exact path="/Trash" component={Trash} />
+              <Route exact path="/" component={Home} />
+              <Redirect to="/" />
+            </Switch>
+          </div>
         </div>
       </div>
     </Router>

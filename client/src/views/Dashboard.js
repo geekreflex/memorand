@@ -15,10 +15,7 @@ const Dashboard = () => {
   });
 
   return (
-    <div
-      className="dashboard-main"
-      style={{ marginLeft: nav ? "80px" : "0px" }}
-    >
+    <div className="dashboard-main">
       <NoteList />
       <NewNoteButton />
       <NewNoteModal />

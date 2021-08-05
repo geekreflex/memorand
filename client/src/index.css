@@ -199,7 +199,8 @@ a:hover {
   margin-left: 20px;
 }
 
-.dashboard-main {
+.dashboard-main,
+.trash-main {
   margin-top: 150px;
 }
 

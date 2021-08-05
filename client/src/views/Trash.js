@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Note from "../components/Note";
 
 const Trash = () => {
   const { notes } = useSelector((state) => state.notes);
@@ -14,9 +15,9 @@ const Trash = () => {
   return (
     <div className="trash-main">
       {trashedNotes ? (
-        <div className="trash-notes">
+        <div className="trash-notes note-list">
           {trashedNotes.map((note) => (
-            <div>{note.title}</div>
+            <Note key={note._id} note={note} trash={true} />
           ))}
         </div>
       ) : (
