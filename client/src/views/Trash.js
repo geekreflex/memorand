@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import Note from "../components/Note";
+import Note from "../components/Note/Note";
 import { useDispatch } from "react-redux";
 import { getNotes } from "../features/note/noteSlice";
 

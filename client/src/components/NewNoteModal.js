@@ -15,6 +15,14 @@ const NewNoteModal = () => {
     dispatch(closeModal());
   };
 
+  const resizeInputField = (e) => {
+    let textarea = e.target;
+    let heightLimit = 200;
+
+    textarea.style.height = "";
+    textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
+  };
+
   const submitNote = () => {
     const note = {
       title,
@@ -50,6 +58,7 @@ const NewNoteModal = () => {
               <textarea
                 placeholder="Start typing here"
                 value={body}
+                onInput={resizeInputField}
                 onChange={(e) => setBody(e.target.value)}
               />
             </div>
