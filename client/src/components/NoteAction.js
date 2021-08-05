@@ -12,7 +12,6 @@ const NoteAction = ({ note, viewNoteClass }) => {
     e.stopPropagation();
     dispatch(toggleTrashNote(note._id));
     dispatch(trashNoteAsync(note._id));
-    dispatch(toggleNoteModal());
   };
 
   return (
