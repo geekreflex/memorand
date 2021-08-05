@@ -3,6 +3,7 @@ const express = require("express");
 const {
   registerUser,
   authUser,
+  getUserProfile,
   updateUserProfile,
 } = require("../controllers/userController");
 const { protect } = require("../middlewares/authMiddleware");

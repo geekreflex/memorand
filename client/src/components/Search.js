@@ -1,18 +1,20 @@
 import React from "react";
-import { IoMdSearch, IoMdClose } from "react-icons/io";
+import { IoSearchSharp, IoCloseSharp } from "react-icons/io5";
 
 const Search = () => {
   return (
-    <div className="hd-search">
-      <span>
-        <IoMdSearch className="search-icon" />
-      </span>
+    <div className="search">
+      <div className="search-ic">
+        <IoSearchSharp />
+      </div>
       <form>
-        <input type="text" placeholder="Search" />
+        <div>
+          <input placeholder="Hello, We're working on it" />
+        </div>
       </form>
-      <span>
-        <IoMdClose className="search-icon" />
-      </span>
+      <div className="search-ic">
+        <IoCloseSharp />
+      </div>
     </div>
   );
 };

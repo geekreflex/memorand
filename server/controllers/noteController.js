@@ -17,7 +17,7 @@ const createNote = asyncHandler(async (req, res) => {
 const getUserNote = asyncHandler(async (req, res) => {
   const { _id } = req.user;
 
-  const note = await Note.find({ user: _id });
+  const note = await Note.find({ user: _id }).sort({ createdAt: -1 });
 
   if (note) {
     return res.status(200).json(note);
@@ -46,9 +46,11 @@ const updateNote = asyncHandler(async (req, res) => {
 
   const note = await Note.findById(req.params.id);
 
+  console.log(req.body, note);
+
   if (note) {
     note.title = title;
-    not.body = body;
+    note.body = body;
 
     const updatedNote = await note.save();
     res.json(updatedNote);
@@ -58,4 +60,60 @@ const updateNote = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { createNote, getUserNote, deleteNote, updateNote };
+const setNoteColor = asyncHandler(async (req, res) => {
+  const { color } = req.body;
+
+  const note = await Note.findById(req.params.id);
+
+  if (note) {
+    note.color = color;
+
+    await note.save();
+    res.json({ message: "Color changed" });
+  } else {
+    res.status(404);
+    throw new Error("Error occured (Color)");
+  }
+});
+
+const pinNote = asyncHandler(async (req, res) => {
+  const { pin } = req.body;
+
+  const note = await Note.findById(req.params.id);
+
+  if (note) {
+    note.pinned = pin;
+
+    await note.save();
+    res.json({ message: "Note pinned" });
+  } else {
+    res.status(404);
+    throw new Error("Error Occured (Pin)");
+  }
+});
+
+const trashNote = asyncHandler(async (req, res) => {
+  const note = await Note.findById(req.params.id);
+
+  console.log(note);
+
+  if (note) {
+    note.trashed = !note.trashed;
+
+    await note.save();
+    res.json({ message: "Note Trashed" });
+  } else {
+    res.status(404);
+    throw new Error("Error Occured (Trash)");
+  }
+});
+
+module.exports = {
+  createNote,
+  getUserNote,
+  deleteNote,
+  updateNote,
+  setNoteColor,
+  trashNote,
+  pinNote,
+};

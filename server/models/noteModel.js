@@ -15,6 +15,14 @@ const noteSchema = mongoose.Schema(
       default: false,
       required: true,
     },
+    color: {
+      type: String,
+      default: "#202124",
+    },
+    trashed: {
+      type: Boolean,
+      default: false,
+    },
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
   },
   { timestamps: true }

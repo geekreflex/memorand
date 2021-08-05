@@ -1,17 +1,50 @@
 import React from "react";
-import Hamburger from "./Hamburger";
+import { useSelector, useDispatch } from "react-redux";
 import Search from "./Search";
+import Account from "./Account";
+import HeaderLink from "./HeaderLink";
+import { IoMenuSharp } from "react-icons/io5";
+import { toggleNav } from "../features/action/actionSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const isAuth = useSelector((state) => state.user.isAuthenticated);
+  const dispatch = useDispatch();
+
+  const toggleSideNav = () => {
+    dispatch(toggleNav());
+  };
+
   return (
     <header>
       <div className="container">
-        <div className="header-wrap">
-          <div className="hd-wrap-left">
-            <Hamburger />
-            <Search />
-          </div>
-          <div className="hd-wrap-right">navs</div>
+        <div className="hd-main">
+          {isAuth ? (
+            <div className="hd-wrap">
+              <div className="hd-wrap-left">
+                <Link to="/" className="logo">
+                  N
+                </Link>
+                <div className="hd-menu-ic" onClick={toggleSideNav}>
+                  <IoMenuSharp />
+                </div>
+                <Search />
+              </div>
+              <div className="hd-wrap-right">
+                <ul className="hd-link">
+                  <li>
+                    <Link to="/about">About Us</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Contribute</Link>
+                  </li>
+                </ul>
+                <Account />
+              </div>
+            </div>
+          ) : (
+            <HeaderLink />
+          )}
         </div>
       </div>
     </header>
