@@ -35,7 +35,7 @@ const ColorPalette = ({ noteId, color }) => {
           className={plt.color === "#202124" ? "shade" : ""}
           style={{
             backgroundColor: plt.color,
-            border: plt.color == color ? "2px solid #888" : "none",
+            border: plt.color === color ? "2px solid #888" : "none",
           }}
           onClick={getColor}
         ></span>

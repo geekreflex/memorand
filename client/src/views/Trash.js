@@ -23,7 +23,7 @@ const Trash = () => {
       ) : (
         <div className="trash-wrap">
           <div className="trash-wrap-img">
-            <img src="icons8-trash-512.png" />
+            <img alt="Trash" src="icons8-trash-512.png" />
           </div>
           <p>Okay nothing to see here! Go ahead and delete something</p>
         </div>

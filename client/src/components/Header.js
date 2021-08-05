@@ -1,5 +1,4 @@
 import React from "react";
-import Logout from "./Logout";
 import { useSelector, useDispatch } from "react-redux";
 import Search from "./Search";
 import Account from "./Account";

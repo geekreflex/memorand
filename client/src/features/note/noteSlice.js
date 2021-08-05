@@ -93,7 +93,7 @@ export const setNoteColor = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.put(
+      await axios.put(
         `${BASE_URL}/api/notes/${payload.noteId}/color`,
         payload,
         config

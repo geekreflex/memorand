@@ -16,7 +16,7 @@ const Welcome = () => {
       <div className="welcome-img">
         {/* <div className="img-drop"></div> */}
         <div className="img-con">
-          <img src="./notion1.png" />
+          <img alt="Notion DashBoard Screenshot" src="./notion1.png" />
         </div>
       </div>
     </div>

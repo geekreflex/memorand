@@ -5,7 +5,7 @@ import { clearNote, updateNote } from "../features/note/noteSlice";
 import NoteAction from "./NoteAction";
 
 const ViewNote = () => {
-  const { note, status } = useSelector((state) => state.notes);
+  const { note } = useSelector((state) => state.notes);
   const { noteModal } = useSelector((state) => state.action);
 
   const [title, setTitle] = useState();
