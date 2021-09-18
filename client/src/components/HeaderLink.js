@@ -8,14 +8,14 @@ const HeaderLink = () => {
         N
       </Link>
       <div className="link-wrap">
-        <ul className="hd-link">
+        {/* <ul className="hd-link">
           <li>
             <Link to="/about">About Us</Link>
           </li>
           <li>
             <Link to="#">Contribute</Link>
           </li>
-        </ul>
+        </ul> */}
 
         <div className="auth-link">
           <Link to="/login">Sign In</Link>

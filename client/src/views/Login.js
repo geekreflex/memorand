@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { loginUser } from "../features/user/userSlice";
-import { useDispatch } from "react-redux";
-import Error from "../components/Error";
+import React, { useState } from 'react';
+import { loginUser } from '../features/user/userSlice';
+import { useDispatch } from 'react-redux';
+import Error from '../components/Error';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
   const onSubmitLogin = (event) => {
@@ -20,10 +20,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="form-main">
       <Error />
-      <h1>Login Page</h1>
-      <div>
+      <h1>Welcome back!</h1>
+      <div className="form-wrap">
         <form onSubmit={onSubmitLogin}>
           <div>
             <input
@@ -46,9 +46,12 @@ const Login = () => {
             />
           </div>
           <div>
-            <button>Login</button>
+            <button className="btn primary">Login</button>
           </div>
         </form>
+        <p>
+          Don't have an account? <a href="/register">Register</a>
+        </p>
       </div>
     </div>
   );

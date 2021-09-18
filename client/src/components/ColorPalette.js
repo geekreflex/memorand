@@ -12,6 +12,7 @@ const ColorPalette = ({ noteId, color }) => {
     { color: "#442f19" },
     { color: "#1d504b" },
     { color: "#2d555e" },
+    { color: "#256141" },
   ];
 
   const dispatch = useDispatch();

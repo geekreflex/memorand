@@ -1,11 +1,11 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Search from "./Search";
-import Account from "./Account";
-import HeaderLink from "./HeaderLink";
-import { IoMenuSharp } from "react-icons/io5";
-import { toggleNav } from "../features/action/actionSlice";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Search from './Search';
+import Account from './Account';
+import HeaderLink from './HeaderLink';
+import { IoMenuSharp } from 'react-icons/io5';
+import { toggleNav } from '../features/action/actionSlice';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const isAuth = useSelector((state) => state.user.isAuthenticated);
@@ -31,14 +31,6 @@ const Header = () => {
                 <Search />
               </div>
               <div className="hd-wrap-right">
-                <ul className="hd-link">
-                  <li>
-                    <Link to="/about">About Us</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Contribute</Link>
-                  </li>
-                </ul>
                 <Account />
               </div>
             </div>

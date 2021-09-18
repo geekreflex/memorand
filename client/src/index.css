@@ -11,7 +11,7 @@
   --border-color: #5f6368;
   --text-color: #ddd;
   --shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  --primary-color: #49a086;
+  --primary-color: #256141;
   --primary-color-light: #91d2c0;
   --color-tp: rgba(255, 255, 255, 0.2);
 }
@@ -19,16 +19,16 @@
 body {
   background-color: var(--bg-color);
   /* line-height: 1.5rem; */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: all ease-in-out 0.3s;
+  /* transition: all ease-in-out 0.3s; */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -371,7 +371,6 @@ a:hover {
   width: 30px;
   height: 30px;
   display: block;
-  /* background-color: blue; */
   border-radius: 50%;
 }
 
@@ -402,6 +401,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .new-note-wrap {
@@ -678,6 +678,7 @@ a:hover {
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
+  text-decoration: none !important;
 }
 
 .btn-neutral:hover {
@@ -689,9 +690,6 @@ a:hover {
   justify-content: center;
   align-items: center;
   padding: 20px;
-}
-
-.welcome {
 }
 
 .welcome-text {
@@ -724,7 +722,7 @@ a:hover {
 }
 
 .img-con::after {
-  content: "";
+  content: '';
   width: 100%;
   height: 100%;
   background-color: var(--primary-color-light);
@@ -737,10 +735,6 @@ a:hover {
 
 .img-con img {
   width: 100%;
-}
-
-.trash-main {
-  /*  */
 }
 
 .trash-wrap {
@@ -776,4 +770,79 @@ a:hover {
 
 .updated div {
   font-weight: bold;
+}
+
+/* login */
+.form-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.form-main h1 {
+  margin-bottom: 20px;
+  color: #999;
+}
+
+.form-wrap {
+  min-width: 400px;
+}
+
+.form-name-wrap {
+  width: 100%;
+  display: flex;
+}
+
+.form-name-wrap div:last-child {
+  margin-left: 20px;
+}
+
+.form-name-wrap div {
+  width: 100%;
+}
+
+.form-wrap > form > div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-wrap > form {
+  margin-bottom: 20px;
+}
+.form-wrap div input {
+  width: 100%;
+  height: 45px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form-wrap div button {
+  width: 100%;
+  height: 45px;
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-wrap {
+    min-width: 100%;
+  }
+  .form-name-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-name-wrap div:last-child {
+    margin-left: 0;
+  }
+
+  .form-name-wrap div:first-child {
+    margin-bottom: 20px;
+  }
 }

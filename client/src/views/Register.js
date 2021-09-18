@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../features/user/userSlice";
-import Error from "../components/Error";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../features/user/userSlice';
+import Error from '../components/Error';
 
 const Register = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
 
@@ -25,30 +25,32 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="form-main">
       <Error />
-      <h1>Register Page</h1>
-      <div>
+      <h1>Create account</h1>
+      <div className="form-wrap">
         <form onSubmit={onSubmitRegister}>
-          <div>
-            <input
-              type="text"
-              name="firstName"
-              value={firstName}
-              placeholder="First Name"
-              onChange={(e) => setFirstName(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="lastName"
-              value={lastName}
-              placeholder="Last Name"
-              onChange={(e) => setLastName(e.target.value)}
-              required
-            />
+          <div className="form-name-wrap">
+            <div>
+              <input
+                type="text"
+                name="firstName"
+                value={firstName}
+                placeholder="First Name"
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="lastName"
+                value={lastName}
+                placeholder="Last Name"
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+            </div>
           </div>
           <div>
             <input
@@ -71,9 +73,13 @@ const Register = () => {
             />
           </div>
           <div>
-            <button>Register</button>
+            <button className="btn primary">Register</button>
           </div>
         </form>
+
+        <p>
+          Already have an account? <a href="/login">Login</a>
+        </p>
       </div>
     </div>
   );
