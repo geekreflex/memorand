@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { toggleNoteModal } from "../features/action/actionSlice";
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleNoteModal } from '../features/action/actionSlice';
 import {
   clearNote,
   updateNote,
   updateNoteAsync,
-} from "../features/note/noteSlice";
-import NoteAction from "./NoteAction";
-import TimeAgo from "./TimeAgo";
+} from '../features/note/noteSlice';
+import NoteAction from './NoteAction';
+import TimeAgo from './TimeAgo';
 
 const ViewNote = () => {
   const { note } = useSelector((state) => state.notes);
@@ -38,20 +38,20 @@ const ViewNote = () => {
       data: { title, body },
       noteId: note._id,
     };
-    console.log("saved");
-    console.log(document.querySelector(".vni-body").innerHTML);
+    console.log('saved');
+    console.log(document.querySelector('.vni-body').innerHTML);
     dispatch(updateNote(payload));
     dispatch(updateNoteAsync(payload));
   };
 
   return (
-    <div className={noteModal ? "view-note" : "view-note hidden Modal"}>
+    <div className={noteModal ? 'view-note' : 'view-note hidden Modal'}>
       <div className="overlay" onClick={hideNote}></div>
       <div
         className="view-note-wrap"
         style={{
           backgroundColor: note.color,
-          borderColor: note.color === "#202124" ? "#5f6368" : note.color,
+          borderColor: note.color === '#202124' ? '#5f6368' : note.color,
         }}
       >
         <div className="view-note-info">
@@ -86,7 +86,12 @@ const ViewNote = () => {
             {editBody}
           </div>
         </div>
-        <NoteAction note={note} viewNoteClass="view-note-class" />
+        <div className="close-btn-mob display-none">
+          <NoteAction note={note} viewNoteClass="view-note-class" />
+          <button onClick={hideNote} className="btn">
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -8,15 +8,6 @@ const HeaderLink = () => {
         M
       </Link>
       <div className="link-wrap">
-        {/* <ul className="hd-link">
-          <li>
-            <Link to="/about">About Us</Link>
-          </li>
-          <li>
-            <Link to="#">Contribute</Link>
-          </li>
-        </ul> */}
-
         <div className="auth-link">
           <Link to="/login">Sign In</Link>
           <Link className="btn primary" to="/register">

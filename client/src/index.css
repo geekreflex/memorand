@@ -33,14 +33,14 @@ code {
 }
 
 .logo {
-  font-size: 30px;
+  font-size: 20px;
   margin-right: 30px;
   font-weight: 600;
   padding: 10px;
   background-color: var(--primary-color);
   color: var(--text-color);
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -322,7 +322,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   z-index: 10;
   box-shadow: var(--shadow);
@@ -349,6 +349,13 @@ a:hover {
 .note:hover .note-action,
 .note:hover .note-pin {
   visibility: visible;
+}
+
+@media only screen and (max-width: 600px) {
+  .note:hover .note-action,
+  .note:hover .note-pin {
+    visibility: hidden;
+  }
 }
 
 .color-palette,
@@ -414,6 +421,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 0 20px;
 }
 
 .new-note-wrap {
@@ -427,6 +435,17 @@ a:hover {
   display: flex;
   flex-direction: column;
   z-index: 10;
+}
+
+@media only screen and (max-width: 600px) {
+  .new-note-wrap {
+    min-width: 100%;
+  }
+  .new-note-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
 }
 
 .new-note-hd {
@@ -499,10 +518,12 @@ a:hover {
   border-radius: 5px;
   /* min-width: 360px; */
   width: 600px;
+  max-height: 100vh;
   z-index: 10;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .view-note-info {
@@ -511,6 +532,30 @@ a:hover {
   overflow-y: scroll;
   max-height: 650px;
   padding: 20px;
+}
+
+.display-none {
+  /* display: none; */
+}
+
+.close-btn-mob {
+  padding: 10px;
+}
+
+.close-btn-mob button {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .view-note-wrap {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .display-none {
+    display: block;
+  }
 }
 
 .vni-title,
@@ -767,6 +812,18 @@ a:hover {
 .trash-wrap p {
   color: var(--text-color);
   font-size: 25px;
+  text-align: ;
+}
+
+@media only screen and (max-width: 600px) {
+  .trash-wrap img {
+    width: 100px;
+  }
+
+  .trash-wrap p {
+    font-size: 14px;
+    text-align: center;
+  }
 }
 
 .updated {
