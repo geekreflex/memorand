@@ -19,9 +19,9 @@ const Header = () => {
                 <Link to="/" className="logo">
                   M
                 </Link>
-                <div className="mob-search-toggle display-none">
+                {/* <div className="mob-search-toggle display-none">
                   <IoSearch />
-                </div>
+                </div> */}
                 <Search />
               </div>
               <div className="hd-wrap-right">
