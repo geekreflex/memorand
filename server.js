@@ -1,14 +1,16 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
-const connectDB = require('./config/db');
-const userRoute = require('./routes/userRoute');
-const noteRoute = require('./routes/noteRoute');
-const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
+const connectDB = require('./server/config/db');
+const userRoute = require('./server/routes/userRoute');
+const noteRoute = require('./server/routes/noteRoute');
+const {
+  notFound,
+  errorHandler,
+} = require('./server/middlewares/errorMiddleware');
 
 connectDB();
 
