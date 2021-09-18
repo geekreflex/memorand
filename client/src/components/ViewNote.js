@@ -86,7 +86,7 @@ const ViewNote = () => {
             {editBody}
           </div>
         </div>
-        <div className="close-btn-mob display-none">
+        <div className="close-btn-mob">
           <NoteAction note={note} viewNoteClass="view-note-class" />
           <button onClick={hideNote} className="btn">
             Cancel

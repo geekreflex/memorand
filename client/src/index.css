@@ -199,6 +199,18 @@ a:hover {
   margin-left: 50px;
 }
 
+.mob-search-toggle {
+  background-color: #999;
+  color: #333;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
 @media only screen and (max-width: 600px) {
   .welcome-text h1 {
     font-size: 30px !important;
@@ -232,6 +244,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 15px;
+  margin-bottom: 100px;
 }
 
 .note {
@@ -535,7 +548,7 @@ a:hover {
 }
 
 .display-none {
-  /* display: none; */
+  display: none;
 }
 
 .close-btn-mob {
@@ -577,42 +590,6 @@ a:hover {
   /* max-height: 500px; */
 }
 
-.side-nav {
-  height: 100vh;
-  width: 80px;
-  background-color: var(--bg-color);
-  border-right: 1px solid var(--border-color);
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.side-nav-menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0 10px;
-}
-
-.side-nav-menu .nav-icon {
-  font-size: 20px;
-  background-color: var(--color-tp);
-  padding: 15px;
-  border-radius: 50%;
-  margin: 10px 0;
-  cursor: pointer;
-  position: relative;
-}
-
-.side-nav-menu a {
-  color: var(--text-color);
-}
-
 .title {
   position: absolute;
   left: 50px;
@@ -622,10 +599,6 @@ a:hover {
   padding: 7px 15px;
   border-radius: 5px;
   display: none;
-}
-
-.side-nav-menu .nav-icon:hover .title {
-  display: block;
 }
 
 .search {
@@ -649,6 +622,12 @@ a:hover {
   color: var(--text-color);
 }
 
+@media only screen and (max-width: 600px) {
+  .search {
+    display: none;
+  }
+}
+
 .search-ic {
   display: flex;
   padding: 0 10px;
@@ -656,12 +635,36 @@ a:hover {
   color: var(--text-color);
 }
 
+.note-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.note-links a {
+  font-weight: 600;
+  padding: 5px;
+}
+
+.note-links a:last-child {
+  margin-left: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .note-links a {
+    font-size: 12px;
+  }
+  .note-links a:last-child {
+    margin-left: 10px;
+  }
+}
+
 .acct {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 .acct-user-circle {

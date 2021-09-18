@@ -12,20 +12,15 @@ import Profile from './views/Profile';
 import Trash from './views/Trash';
 import Home from './views/Home';
 import Header from './components/Header';
-import SideNav from './components/SideNav';
 import { PublicRoute, ProtectedRoute } from './helper/authRoute';
-import { useSelector } from 'react-redux';
 
 function App() {
-  const { nav } = useSelector((state) => state.action);
-
   return (
     <Router>
       <div className="App">
         <Header />
-        <SideNav />
         <div className="container margintop">
-          <div style={{ marginLeft: nav ? '80px' : '0px' }}>
+          <div>
             <Switch>
               <PublicRoute exact path="/login" component={Login} />
               <PublicRoute exact path="/register" component={Register} />
