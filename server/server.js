@@ -14,10 +14,12 @@ const app = express();
 
 app.use(express.json());
 
+if (process.env.NODE_ENV === 'developement') {
+  app.use(cors());
+}
+
 app.use('/api/users', userRoute);
 app.use('/api/notes', noteRoute);
-
-const __dirname = path.resolve();
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '/client/build')));
@@ -29,7 +31,6 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     res.send('API is running...');
   });
-  app.use(cors());
 }
 
 app.use(notFound);
