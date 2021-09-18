@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HeaderLink = () => {
   return (
     <div className="hd-link-wrap">
       <Link to="/" className="logo">
-        N
+        M
       </Link>
       <div className="link-wrap">
         {/* <ul className="hd-link">

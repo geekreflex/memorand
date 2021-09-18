@@ -23,12 +23,12 @@ const Header = () => {
             <div className="hd-wrap">
               <div className="hd-wrap-left">
                 <Link to="/" className="logo">
-                  N
+                  M
                 </Link>
                 <div className="hd-menu-ic" onClick={toggleSideNav}>
                   <IoMenuSharp />
                 </div>
-                <Search />
+                {/* <Search /> */}
               </div>
               <div className="hd-wrap-right">
                 <Account />
