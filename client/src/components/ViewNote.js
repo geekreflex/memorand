@@ -115,8 +115,9 @@ const ViewNoteModal = styled.div`
     top: 0;
     left: 0;
     max-width: 100%;
-    height: 100%;
+    height: 100vh;
     border-radius: 0;
+    z-index: 999999;
     .action-btn-wrap {
       display: flex !important;
       position: absolute;
@@ -183,7 +184,7 @@ const ButtonIconBack = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 5px 0;
   color: #ddd;
   cursor: pointer;
 `;

@@ -28,6 +28,7 @@ const AddNoteModal = () => {
     };
 
     dispatch(createNoteAsync(note));
+    closeAddNewModal();
     setTitle('');
     setBody('');
   };

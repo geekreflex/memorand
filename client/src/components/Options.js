@@ -14,7 +14,7 @@ const Options = ({ color, noteId }) => {
 
   const dispatch = useDispatch();
 
-  const { styles, attributes } = usePopper(
+  const { styles, attributes, update } = usePopper(
     referenceRef.current,
     popperRef.current,
     {
@@ -25,18 +25,24 @@ const Options = ({ color, noteId }) => {
           enabled: true,
           options: {
             offset: [0, 10],
+            offset: [20, 0],
           },
         },
       ],
     }
   );
 
-  const hide = () => setVisibility(false);
+  const hide = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    setVisibility(false);
+  };
 
-  const handleOptionsClick = (event) => {
+  const handleOptionsClick = async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    setVisibility(true);
+    setVisibility(!visible);
+    await update();
   };
 
   const handleDeleteNote = () => {
