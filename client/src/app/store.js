@@ -1,12 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "../features/user/userSlice";
-import notesReducer from "../features/note/noteSlice";
-import actionReducer from "../features/action/actionSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from '../features/user/userSlice';
+import notesReducer from '../features/notes/notesSlice';
+import actionsReducer from '../features/actions/actionsSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     notes: notesReducer,
-    action: actionReducer,
+    actions: actionsReducer,
   },
 });

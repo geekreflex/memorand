@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { loginUser } from '../features/user/userSlice';
+import { loginUserAsync } from '../features/user/userSlice';
 import { useDispatch } from 'react-redux';
-import Error from '../components/Error';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -16,12 +15,11 @@ const Login = () => {
       password,
     };
 
-    dispatch(loginUser(payload));
+    dispatch(loginUserAsync(payload));
   };
 
   return (
     <div className="form-main">
-      <Error />
       <h1>Welcome back!</h1>
       <div className="form-wrap">
         <form onSubmit={onSubmitLogin}>

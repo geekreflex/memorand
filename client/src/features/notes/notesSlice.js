@@ -1,19 +1,17 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { token } from "../../utils/token";
-import { BASE_URL } from "../../utils/baseUrl";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { token } from '../../utils/token';
+import { BASE_URL } from '../../utils/baseUrl';
 
 const initialState = {
   notes: [],
   note: {},
-  status: "idle",
+  status: 'idle',
   error: null,
 };
 
-// const BASE_URL = `http://localhost:7000/api/notes`;
-
-export const createNote = createAsyncThunk(
-  "notes/createNote",
+export const createNoteAsync = createAsyncThunk(
+  'notes/createNoteAsync',
   async (payload, thunkAPI) => {
     try {
       const config = {
@@ -28,10 +26,8 @@ export const createNote = createAsyncThunk(
         config
       );
 
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error.response);
       return thunkAPI.rejectWithValue(
         error.response && error.response.data.message
           ? error.response.data.message
@@ -41,65 +37,21 @@ export const createNote = createAsyncThunk(
   }
 );
 
-export const getNotes = createAsyncThunk("notes/getNotes", async (thunkAPI) => {
-  try {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const { data } = await axios.get(`${BASE_URL}/api/notes`, config);
-
-    return data;
-  } catch (error) {
-    console.log(error.response);
-    return thunkAPI.rejectWithValue(
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message
-    );
-  }
-});
-
-export const pinNote = createAsyncThunk(
-  "notes/pinNote",
-  async (payload, thunkAPI) => {
+export const getNotesAsync = createAsyncThunk(
+  'notes/getNotesAsync',
+  async (thunkAPI) => {
     try {
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
       };
 
-      await axios.pu(
-        `${BASE_URL}/api/notes/${payload.noteId}/pin`,
-        payload.pin,
-        config
-      );
-    } catch (error) {
-      console.log(error.response);
-    }
-  }
-);
+      const { data } = await axios.get(`${BASE_URL}/api/notes`, config);
 
-export const setNoteColor = createAsyncThunk(
-  "notes/setColor",
-  async (payload, thunkAPI) => {
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
-      await axios.put(
-        `${BASE_URL}/api/notes/${payload.noteId}/color`,
-        payload,
-        config
-      );
+      return data;
     } catch (error) {
-      console.error(error.response);
       return thunkAPI.rejectWithValue(
         error.response && error.response.data.message
           ? error.response.data.message
@@ -110,7 +62,7 @@ export const setNoteColor = createAsyncThunk(
 );
 
 export const updateNoteAsync = createAsyncThunk(
-  "notes/updateNoteAsync",
+  'notes/updateNoteAsync',
   async (payload, thunkAPI) => {
     try {
       const config = {
@@ -124,10 +76,7 @@ export const updateNoteAsync = createAsyncThunk(
         payload.data,
         config
       );
-
-      console.log(data);
     } catch (error) {
-      console.error(error.response);
       return thunkAPI.rejectWithValue(
         error.response && error.response.data.message
           ? error.response.data.message
@@ -138,7 +87,7 @@ export const updateNoteAsync = createAsyncThunk(
 );
 
 export const trashNoteAsync = createAsyncThunk(
-  "notes/updateNote",
+  'notes/trashNoteAsync',
   async (payload, thunkAPI) => {
     try {
       const config = {
@@ -155,7 +104,57 @@ export const trashNoteAsync = createAsyncThunk(
 
       console.log(data);
     } catch (error) {
-      console.error(error.response);
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  }
+);
+
+export const setNoteColor = createAsyncThunk(
+  'notes/setNoteColor',
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      await axios.put(
+        `${BASE_URL}/api/notes/${payload.noteId}/color`,
+        payload,
+        config
+      );
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      );
+    }
+  }
+);
+
+export const deleteNoteAsync = createAsyncThunk(
+  'notes/deleteNoteAsync',
+  async (payload, thunkAPI) => {
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const { data } = await axios.delete(
+        `${BASE_URL}/api/notes/${payload}`,
+        payload,
+        config
+      );
+      return data;
+    } catch (error) {
       return thunkAPI.rejectWithValue(
         error.response && error.response.data.message
           ? error.response.data.message
@@ -166,13 +165,15 @@ export const trashNoteAsync = createAsyncThunk(
 );
 
 export const notesSlice = createSlice({
-  name: "notes",
+  name: 'notes',
   initialState,
   reducers: {
-    setColor(state, action) {
+    switchColor(state, action) {
+      console.log(action.payload);
       const { noteId, color } = action.payload;
       state.note.color = color;
       const existingNote = state.notes.find((note) => note._id === noteId);
+
       if (existingNote) {
         existingNote.color = color;
       }
@@ -202,36 +203,43 @@ export const notesSlice = createSlice({
         existingNote.trashed = !existingNote.trashed;
       }
     },
+    deleteNote(state, action) {
+      const noteId = action.payload;
+      const notes = state.notes.filter((note) => note._id !== noteId);
+      state.notes = notes;
+      console.log(notes);
+    },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getNotes.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(getNotes.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.notes = action.payload;
-        state.error = null;
-      })
-      .addCase(getNotes.rejected, (state, action) => {
-        state.status = "idle";
-        state.error = action.payload;
-      })
-      .addCase(createNote.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(createNote.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.notes.unshift(action.payload);
-        state.error = null;
-      })
-      .addCase(createNote.rejected, (state, action) => {
-        state.status = "idle";
-        state.error = action.payload;
-      });
+  extraReducers: {
+    [getNotesAsync.pending]: (state) => {
+      state.status = 'pending';
+    },
+    [getNotesAsync.fulfilled]: (state, action) => {
+      state.status = 'idle';
+      state.notes = action.payload;
+      console.log(action);
+    },
+
+    [deleteNoteAsync.pending]: (state) => {
+      state.status = 'pending';
+    },
+    [deleteNoteAsync.fulfilled]: (state, action) => {
+      state.status = 'idle';
+      console.log(action);
+    },
+    [deleteNoteAsync.rejected]: (state, action) => {
+      state.status = 'idle';
+      console.log(action.payload);
+    },
   },
 });
 
-export const { setColor, storeNote, clearNote, toggleTrashNote, updateNote } =
-  notesSlice.actions;
+export const {
+  switchColor,
+  storeNote,
+  clearNote,
+  updateNote,
+  toggleTrashNote,
+  deleteNote,
+} = notesSlice.actions;
 export default notesSlice.reducer;

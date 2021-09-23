@@ -1,6 +1,6 @@
-const asyncHandler = require("express-async-handler");
-const User = require("../models/userModel");
-const generateToken = require("../utils/generateToken");
+const asyncHandler = require('express-async-handler');
+const User = require('../models/userModel');
+const generateToken = require('../utils/generateToken');
 
 const registerUser = asyncHandler(async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -8,7 +8,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (userExists) {
-    return res.status(400).json({ message: "Email already registered." });
+    return res.status(400).json({ message: 'Email already registered.' });
   }
 
   const user = await User.create({
@@ -29,7 +29,7 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error('Invalid user data');
   }
 });
 
@@ -49,7 +49,7 @@ const authUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error("Invalid email or password");
+    throw new Error('Invalid email or password');
   }
 });
 
@@ -66,7 +66,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error('User not found');
   }
 });
 
@@ -94,7 +94,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error("User not found");
+    throw new Error('User not found');
   }
 });
 

@@ -1,21 +1,21 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-import { BASE_URL } from "../../utils/baseUrl";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { BASE_URL } from '../../utils/baseUrl';
 
 const initialState = {
   user: {},
-  status: "idle",
+  status: 'idle',
   error: null,
-  isAuthenticated: false,
+  isAuth: false,
 };
 
-export const registerUser = createAsyncThunk(
-  "user/registerUser",
+export const registerUserAsync = createAsyncThunk(
+  'user/registerUisAuth serAsync',
   async (payload, thunkAPI) => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       };
 
@@ -36,13 +36,13 @@ export const registerUser = createAsyncThunk(
   }
 );
 
-export const loginUser = createAsyncThunk(
-  "user/loginUser",
+export const loginUserAsync = createAsyncThunk(
+  'user/loginUserAsync',
   async (payload, thunkAPI) => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       };
 
@@ -64,56 +64,62 @@ export const loginUser = createAsyncThunk(
 );
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
+    //
     getUserInfoFromStorage(state) {
-      const userInfo = localStorage.getItem("userInfo")
-        ? JSON.parse(localStorage.getItem("userInfo"))
+      const userInfo = localStorage.getItem('userInfo')
+        ? JSON.parse(localStorage.getItem('userInfo'))
         : null;
+
       if (userInfo) {
-        state.isAuthenticated = true;
+        state.isAuth = true;
         state.user = userInfo;
       }
     },
+
+    // logout user
     logoutUser() {
-      localStorage.removeItem("userInfo");
-      window.location.href = "/";
+      localStorage.removeItem('userInfo');
+      window.location.href = '/';
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(registerUser.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.user = action.payload;
-        state.error = null;
-        localStorage.setItem("userInfo", JSON.stringify(action.payload));
-        window.location.href = "/dashboard";
-      })
-      .addCase(registerUser.rejected, (state, action) => {
-        state.status = "idle";
-        state.error = action.payload;
-      })
-      .addCase(loginUser.pending, (state, action) => {
-        state.status = "loading";
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.user = action.payload;
-        state.error = null;
-        localStorage.setItem("userInfo", JSON.stringify(action.payload));
-        window.location.href = "/dashboard";
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        state.status = "idle";
-        state.error = action.payload;
-      });
+  extraReducers: {
+    // Register User
+    [registerUserAsync.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [registerUserAsync.fulfilled]: (state, action) => {
+      state.status = 'idle';
+      state.user = action.payload;
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
+      window.location.href = '/notes';
+      console.log(action);
+    },
+    [registerUserAsync.rejected]: (state, action) => {
+      state.status = 'idle';
+      console.log(action);
+    },
+
+    // Login User
+    [loginUserAsync.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [loginUserAsync.fulfilled]: (state, action) => {
+      state.status = 'idle';
+      state.user = action.payload;
+      localStorage.setItem('userInfo', JSON.stringify(action.payload));
+      window.location.href = '/notes';
+      console.log(action);
+    },
+    [loginUserAsync.rejected]: (state, action) => {
+      state.status = 'idle';
+      console.log(action);
+    },
   },
 });
 
-export const { getUserInfoFromStorage, logoutUser } = userSlice.actions;
+export const { getUserInfoFromStorage } = userSlice.actions;
 
 export default userSlice.reducer;

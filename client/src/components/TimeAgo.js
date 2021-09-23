@@ -1,8 +1,9 @@
-import React from "react";
-import { parseISO, formatDistanceToNow } from "date-fns";
+import React from 'react';
+import styled from 'styled-components';
+import { parseISO, formatDistanceToNow } from 'date-fns';
 
 const TimeAgo = ({ timestamp }) => {
-  let timeAgo = "";
+  let timeAgo = '';
   if (timestamp) {
     const date = parseISO(`${timestamp}`);
     const timePeriod = formatDistanceToNow(date);
@@ -10,10 +11,22 @@ const TimeAgo = ({ timestamp }) => {
   }
 
   return (
-    <div title={timestamp} className="timestamp">
+    <TimeStamp>
+      <span>Edited:</span>
       <i>{timeAgo}</i>
-    </div>
+    </TimeStamp>
   );
 };
+
+const TimeStamp = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-size: 14px;
+  font-weight: 400;
+  span {
+    margin-right: 10px;
+    font-weight: 900;
+  }
+`;
 
 export default TimeAgo;

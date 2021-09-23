@@ -1,30 +1,30 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Note from './Note';
 
-const NoteList = ({ match }) => {
+const TrashScreen = () => {
   const { notes } = useSelector((state) => state.notes);
+  const dispatch = useDispatch();
 
-  const filteredNotes = notes.reduce((filtered, note) => {
-    if (!note.trashed) {
+  const trashedNotes = notes.reduce((filtered, note) => {
+    if (note.trashed) {
       filtered.push(note);
     }
     return filtered;
   }, []);
-
   return (
     <div className="container">
-      <NoteListWrap>
-        {filteredNotes.map((note) => (
-          <Note key={note._id} note={note} />
+      <TrashedNotesWrap>
+        {trashedNotes.map((note) => (
+          <Note key={note._id} note={note} view="trash" />
         ))}
-      </NoteListWrap>
+      </TrashedNotesWrap>
     </div>
   );
 };
 
-const NoteListWrap = styled.div`
+const TrashedNotesWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 15px;
@@ -32,4 +32,4 @@ const NoteListWrap = styled.div`
   margin-top: 100px;
 `;
 
-export default NoteList;
+export default TrashScreen;

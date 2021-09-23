@@ -1,48 +1,75 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { setColor, setNoteColor } from "../features/note/noteSlice";
+import React from 'react';
+import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setNoteColor, switchColor } from '../features/notes/notesSlice';
+import { IoCheckmarkSharp } from 'react-icons/io5';
 
-const ColorPalette = ({ noteId, color }) => {
+const ColorPalette = ({ color, noteId }) => {
   const palette = [
-    { color: "#202124" },
-    { color: "#5c2b29" },
-    { color: "#614919" },
-    { color: "#5b2245" },
-    { color: "#1e3a57" },
-    { color: "#442f19" },
-    { color: "#1d504b" },
-    { color: "#2d555e" },
-    { color: "#256141" },
+    { color: '#202124' },
+    { color: '#5c2b29' },
+    { color: '#614919' },
+    { color: '#5b2245' },
+    { color: '#1e3a57' },
+    { color: '#442f19' },
+    { color: '#1d504b' },
+    { color: '#2d555e' },
+    { color: '#256141' },
   ];
 
   const dispatch = useDispatch();
 
-  const getColor = (e) => {
+  const handleColorSwitch = (e) => {
     e.stopPropagation();
+
     let payload = {
       color: e.target.dataset.color,
       noteId,
     };
-    dispatch(setColor(payload));
+    dispatch(switchColor(payload));
     dispatch(setNoteColor(payload));
   };
 
   return (
-    <div className="note-color-palette">
+    <PaletteWrap>
       {palette.map((plt) => (
-        <span
+        <ColorBox
           key={plt.color}
           data-color={plt.color}
-          className={plt.color === "#202124" ? "shade" : ""}
+          className={plt.color === '#202124' ? 'bordered' : ''}
           style={{
             backgroundColor: plt.color,
-            border: plt.color === color ? "2px solid #888" : "none",
+            border:
+              plt.color === color ? '2px solid #888' : `2px solid ${plt.color}`,
           }}
-          onClick={getColor}
-        ></span>
+          onClick={handleColorSwitch}
+        >
+          {plt.color === color ? <IoCheckmarkSharp /> : ''}
+        </ColorBox>
       ))}
-    </div>
+    </PaletteWrap>
   );
 };
+
+const PaletteWrap = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+`;
+
+const ColorBox = styled.div`
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 3px;
+  color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid #ddd !important;
+  }
+`;
 
 export default ColorPalette;

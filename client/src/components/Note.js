@@ -1,64 +1,79 @@
-import React from "react";
-import { FaThumbtack } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import {
-  storeNote,
-  toggleTrashNote,
-  trashNoteAsync,
-} from "../features/note/noteSlice";
-import { toggleNoteModal } from "../features/action/actionSlice";
-import NoteAction from "./NoteAction";
+import React from 'react';
+import styled from 'styled-components';
+import Options from './Options';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeNote } from '../features/notes/notesSlice';
+import { toggleViewNoteModal } from '../features/actions/actionsSlice';
+import TrashOptions from '../components/TrashOptions';
 
-const Note = ({ note, trash }) => {
-  let shortNote = note.body.slice(0, 50);
-  let newShortNote = shortNote.slice(0, shortNote.lastIndexOf(" "));
-
-  const dispatch = useDispatch();
-
-  const showNote = (e) => {
-    e.stopPropagation();
-    dispatch(storeNote(note._id));
-    dispatch(toggleNoteModal());
+const Note = ({ note, match, view }) => {
+  const truncateNote = () => {
+    let shortNote = note.body.slice(0, 100);
+    return shortNote.slice(0, shortNote.lastIndexOf(' '));
   };
 
-  const restoreNote = (e) => {
+  const dispatch = useDispatch();
+  const { viewModal } = useSelector((state) => state.actions);
+
+  const showNote = (e) => {
+    document.body.style.overflow = 'hidden';
     e.stopPropagation();
-    dispatch(toggleTrashNote(note._id));
-    dispatch(trashNoteAsync(note._id));
+
+    console.log(match);
+
+    dispatch(storeNote(note._id));
+    dispatch(toggleViewNoteModal());
   };
 
   return (
-    <div
-      className={note.color === "#202124" ? "note bordered" : "note"}
+    <NoteWrap
       style={{
-        backgroundColor: `${note.color}`,
-        border: `1px solid ${note.color}`,
+        backgroundColor: note.color,
+        border:
+          note.color === '#202124'
+            ? '1px solid #5f6368'
+            : `1px solid ${note.color}`,
       }}
       onClick={(e) => showNote(e)}
     >
-      {trash ? (
-        ""
-      ) : (
-        <div className="note-pin">
-          <FaThumbtack />
-        </div>
-      )}
-
-      <div className="note-info">
+      <NoteContent>
         <h4>{note.title}</h4>
-        <p>{newShortNote}</p>
-      </div>
-      {trash ? (
-        <div className="restore-note">
-          <button className="btn secondary" onClick={restoreNote}>
-            Restore
-          </button>
-        </div>
+        <p>{truncateNote()}</p>
+      </NoteContent>
+      {view === 'trash' ? (
+        <TrashOptions noteId={note._id} />
       ) : (
-        <NoteAction note={note} className="note-hidden" />
+        <Options color={note.color} noteId={note._id} />
       )}
-    </div>
+    </NoteWrap>
   );
 };
+
+const NoteWrap = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  height: 180px;
+  cursor: default;
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const NoteContent = styled.div`
+  overflow: hidden;
+  padding: 10px;
+
+  h4 {
+    color: #ddd;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #ddd;
+    font-size: 14px;
+  }
+`;
 
 export default Note;

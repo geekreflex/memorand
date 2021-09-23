@@ -1,5 +1,5 @@
-const Note = require("../models/noteModel");
-const asyncHandler = require("express-async-handler");
+const Note = require('../models/noteModel');
+const asyncHandler = require('express-async-handler');
 
 const createNote = asyncHandler(async (req, res) => {
   const { title, body } = req.body;
@@ -23,7 +23,7 @@ const getUserNote = asyncHandler(async (req, res) => {
     return res.status(200).json(note);
   } else {
     res.status(404);
-    throw new Error("Note not found");
+    throw new Error('Note not found');
   }
 });
 
@@ -32,12 +32,14 @@ const deleteNote = asyncHandler(async (req, res) => {
 
   const note = await Note.findById(id);
 
+  console.log(note);
+
   if (note) {
     await note.remove();
-    return res.json({ message: "Note removed" });
+    return res.json({ message: 'Note removed' });
   } else {
     res.status(404);
-    throw new Error("Note not found");
+    throw new Error('Note not found');
   }
 });
 
@@ -56,7 +58,7 @@ const updateNote = asyncHandler(async (req, res) => {
     res.json(updatedNote);
   } else {
     res.status(404);
-    throw new Error("Note not found");
+    throw new Error('Note not found');
   }
 });
 
@@ -69,10 +71,10 @@ const setNoteColor = asyncHandler(async (req, res) => {
     note.color = color;
 
     await note.save();
-    res.json({ message: "Color changed" });
+    res.json({ message: 'Color changed' });
   } else {
     res.status(404);
-    throw new Error("Error occured (Color)");
+    throw new Error('Error occured (Color)');
   }
 });
 
@@ -85,10 +87,10 @@ const pinNote = asyncHandler(async (req, res) => {
     note.pinned = pin;
 
     await note.save();
-    res.json({ message: "Note pinned" });
+    res.json({ message: 'Note pinned' });
   } else {
     res.status(404);
-    throw new Error("Error Occured (Pin)");
+    throw new Error('Error Occured (Pin)');
   }
 });
 
@@ -101,10 +103,10 @@ const trashNote = asyncHandler(async (req, res) => {
     note.trashed = !note.trashed;
 
     await note.save();
-    res.json({ message: "Note Trashed" });
+    res.json({ message: 'Note Trashed' });
   } else {
     res.status(404);
-    throw new Error("Error Occured (Trash)");
+    throw new Error('Error Occured (Trash)');
   }
 });
 

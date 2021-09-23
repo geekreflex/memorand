@@ -5,36 +5,28 @@ import {
   Switch,
   Redirect,
 } from 'react-router-dom';
-import Login from './views/Login';
-import Register from './views/Register';
-import Dashboard from './views/Dashboard';
-import Profile from './views/Profile';
-import Trash from './views/Trash';
-import Home from './views/Home';
-import Header from './components/Header';
 import { PublicRoute, ProtectedRoute } from './helper/authRoute';
 
-function App() {
+// Pages
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+
+// Components
+
+const App = () => {
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <div className="container margintop">
-          <div>
-            <Switch>
-              <PublicRoute exact path="/login" component={Login} />
-              <PublicRoute exact path="/register" component={Register} />
-              <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-              <ProtectedRoute exact path="/profile" component={Profile} />
-              <ProtectedRoute exact path="/Trash" component={Trash} />
-              <Route exact path="/" component={Home} />
-              <Redirect to="/" />
-            </Switch>
-          </div>
-        </div>
+      <div>
+        <Switch>
+          <PublicRoute exact path="/login" component={Login} />
+          <PublicRoute exact path="/register" component={Register} />
+          <ProtectedRoute exact path="/" component={Dashboard} />
+          <Redirect to="/" />
+        </Switch>
       </div>
     </Router>
   );
-}
+};
 
 export default App;
