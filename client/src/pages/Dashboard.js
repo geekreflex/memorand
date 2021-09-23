@@ -8,6 +8,8 @@ import AddNoteButton from '../components/AddNoteButton';
 import AddNoteModal from '../components/AddNoteModal';
 import ViewNote from '../components/ViewNote';
 
+import { HashRouter, Switch, Route } from 'react-router-dom';
+
 const Dashboard = () => {
   const { currentDisplay } = useSelector((state) => state.actions);
 
@@ -26,13 +28,19 @@ const Dashboard = () => {
       <AddNoteButton />
       <AddNoteModal />
       <ViewNote />
-      <div style={{ marginLeft: '50px' }}>{renderDisplay()}</div>
+      <DisplayWrap>{renderDisplay()}</DisplayWrap>
     </DashboardWrap>
   );
 };
 
 const DashboardWrap = styled.div`
   /* display: flex; */
+`;
+const DisplayWrap = styled.div`
+  margin-left: 60px;
+  @media only screen and (max-width: 600px) {
+    margin-left: 0 !important;
+  }
 `;
 
 export default Dashboard;

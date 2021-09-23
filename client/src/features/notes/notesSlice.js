@@ -150,7 +150,6 @@ export const deleteNoteAsync = createAsyncThunk(
 
       const { data } = await axios.delete(
         `${BASE_URL}/api/notes/${payload}`,
-        payload,
         config
       );
       return data;
@@ -212,7 +211,7 @@ export const notesSlice = createSlice({
   },
   extraReducers: {
     [getNotesAsync.pending]: (state) => {
-      state.status = 'pending';
+      state.status = 'loading';
     },
     [getNotesAsync.fulfilled]: (state, action) => {
       state.status = 'idle';
@@ -220,8 +219,21 @@ export const notesSlice = createSlice({
       console.log(action);
     },
 
+    [createNoteAsync.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [createNoteAsync.fulfilled]: (state, action) => {
+      state.status = 'idle';
+      state.notes.unshift(action.payload);
+      state.error = null;
+    },
+    [createNoteAsync.rejected]: (state, action) => {
+      state.status = 'idle';
+      state.error = action.payload;
+    },
+
     [deleteNoteAsync.pending]: (state) => {
-      state.status = 'pending';
+      state.status = 'loading';
     },
     [deleteNoteAsync.fulfilled]: (state, action) => {
       state.status = 'idle';

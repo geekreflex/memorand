@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { IoTrashOutline, IoArrowUndoOutline } from 'react-icons/io5';
+import { toggleTrashNote, trashNoteAsync } from '../features/notes/notesSlice';
 import {
-  deleteNoteAsync,
-  deleteNote,
-  toggleTrashNote,
-  trashNoteAsync,
-} from '../features/notes/notesSlice';
+  toggleConfirmDelModal,
+  setDelNoteId,
+} from '../features/actions/actionsSlice';
 
 const TrashOptions = ({ noteId }) => {
   const dispatch = useDispatch();
@@ -22,8 +21,8 @@ const TrashOptions = ({ noteId }) => {
   const handleConfirmNoteDelete = (e) => {
     //
     e.stopPropagation();
-    dispatch(deleteNote(noteId));
-    dispatch(deleteNoteAsync(noteId));
+    dispatch(setDelNoteId(noteId));
+    dispatch(toggleConfirmDelModal());
   };
 
   return (

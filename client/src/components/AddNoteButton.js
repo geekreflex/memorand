@@ -33,6 +33,12 @@ const AddButton = styled.button`
   color: #202124;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   background-color: #ddd;
+  outline: none;
+  z-index: 99;
+
+  @media only screen and (max-width: 600px) {
+    bottom: 70px;
+  }
 `;
 
 export default AddNoteButton;

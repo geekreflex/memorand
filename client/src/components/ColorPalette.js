@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setNoteColor, switchColor } from '../features/notes/notesSlice';
 import { IoCheckmarkSharp } from 'react-icons/io5';
+import { switchInitialColor } from '../features/actions/actionsSlice';
 
 const ColorPalette = ({ color, noteId }) => {
   const palette = [
@@ -18,6 +19,7 @@ const ColorPalette = ({ color, noteId }) => {
   ];
 
   const dispatch = useDispatch();
+  const { initialColor } = useSelector((state) => state.actions);
 
   const handleColorSwitch = (e) => {
     e.stopPropagation();
@@ -30,23 +32,48 @@ const ColorPalette = ({ color, noteId }) => {
     dispatch(setNoteColor(payload));
   };
 
+  const handleInitial = (e) => {
+    const color = e.target.dataset.color;
+    dispatch(switchInitialColor(color));
+  };
+
   return (
     <PaletteWrap>
-      {palette.map((plt) => (
-        <ColorBox
-          key={plt.color}
-          data-color={plt.color}
-          className={plt.color === '#202124' ? 'bordered' : ''}
-          style={{
-            backgroundColor: plt.color,
-            border:
-              plt.color === color ? '2px solid #888' : `2px solid ${plt.color}`,
-          }}
-          onClick={handleColorSwitch}
-        >
-          {plt.color === color ? <IoCheckmarkSharp /> : ''}
-        </ColorBox>
-      ))}
+      {noteId === '#1'
+        ? palette.map((plt) => (
+            <ColorBox
+              key={plt.color}
+              data-color={plt.color}
+              className={plt.color === '#202124' ? 'bordered' : ''}
+              style={{
+                backgroundColor: plt.color,
+                border:
+                  plt.color === color
+                    ? '2px solid #888'
+                    : `2px solid ${plt.color}`,
+              }}
+              onClick={handleInitial}
+            >
+              {plt.color === color ? <IoCheckmarkSharp /> : ''}
+            </ColorBox>
+          ))
+        : palette.map((plt) => (
+            <ColorBox
+              key={plt.color}
+              data-color={plt.color}
+              className={plt.color === '#202124' ? 'bordered' : ''}
+              style={{
+                backgroundColor: plt.color,
+                border:
+                  plt.color === color
+                    ? '2px solid #888'
+                    : `2px solid ${plt.color}`,
+              }}
+              onClick={handleColorSwitch}
+            >
+              {plt.color === color ? <IoCheckmarkSharp /> : ''}
+            </ColorBox>
+          ))}
     </PaletteWrap>
   );
 };
@@ -73,3 +100,23 @@ const ColorBox = styled.div`
 `;
 
 export default ColorPalette;
+
+{
+  /* <PaletteWrap>
+      {palette.map((plt) => (
+        <ColorBox
+          key={plt.color}
+          data-color={plt.color}
+          className={plt.color === '#202124' ? 'bordered' : ''}
+          style={{
+            backgroundColor: plt.color,
+            border:
+              plt.color === color ? '2px solid #888' : `2px solid ${plt.color}`,
+          }}
+          onClick={noteId === '#1' ? handleInitial : handleColorSwitch}
+        >
+          {plt.color === color ? <IoCheckmarkSharp /> : ''}
+        </ColorBox>
+      ))}
+    </PaletteWrap> */
+}

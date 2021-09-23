@@ -2,9 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   addModal: false,
+  confirmDelModal: false,
   nav: false,
   viewModal: false,
   currentDisplay: 'notes',
+  delNoteId: '',
+  initialColor: '#202124',
 };
 
 const actionsSlice = createSlice({
@@ -23,6 +26,16 @@ const actionsSlice = createSlice({
     switchDisplay(state, action) {
       state.currentDisplay = action.payload;
     },
+
+    toggleConfirmDelModal(state) {
+      state.confirmDelModal = !state.confirmDelModal;
+    },
+    setDelNoteId(state, action) {
+      state.delNoteId = action.payload;
+    },
+    switchInitialColor(state, action) {
+      state.initialColor = action.payload;
+    },
   },
 });
 
@@ -31,6 +44,9 @@ export const {
   closeNewNoteModal,
   toggleViewNoteModal,
   switchDisplay,
+  toggleConfirmDelModal,
+  setDelNoteId,
+  switchInitialColor,
 } = actionsSlice.actions;
 
 export default actionsSlice.reducer;
