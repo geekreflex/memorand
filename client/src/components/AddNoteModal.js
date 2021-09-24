@@ -25,6 +25,7 @@ const AddNoteModal = () => {
     const note = {
       title,
       body,
+      color: initialColor,
     };
 
     dispatch(createNoteAsync(note));

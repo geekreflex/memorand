@@ -5,7 +5,7 @@ import { setNoteColor, switchColor } from '../features/notes/notesSlice';
 import { IoCheckmarkSharp } from 'react-icons/io5';
 import { switchInitialColor } from '../features/actions/actionsSlice';
 
-const ColorPalette = ({ color, noteId }) => {
+const ColorPalette = ({ color, noteId, handleOptionsClick }) => {
   const palette = [
     { color: '#202124' },
     { color: '#5c2b29' },
@@ -23,6 +23,7 @@ const ColorPalette = ({ color, noteId }) => {
 
   const handleColorSwitch = (e) => {
     e.stopPropagation();
+    handleOptionsClick(e);
 
     let payload = {
       color: e.target.dataset.color,

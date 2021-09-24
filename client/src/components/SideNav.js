@@ -122,8 +122,8 @@ const WebNav = styled.div`
   }
   &:hover {
     width: 250px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    border-right: 1px solid #5f6368;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* border-right: 1px solid #5f6368; */
   }
   .nav-list-wrap {
     display: flex;

@@ -2,11 +2,12 @@ const Note = require('../models/noteModel');
 const asyncHandler = require('express-async-handler');
 
 const createNote = asyncHandler(async (req, res) => {
-  const { title, body } = req.body;
+  const { title, body, color } = req.body;
 
   const note = new Note({
-    title,
-    body,
+    title: title || '',
+    body: body || '',
+    color: color,
     user: req.user._id,
   });
 

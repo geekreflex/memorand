@@ -20,8 +20,11 @@ const actionsSlice = createSlice({
     closeNewNoteModal(state) {
       state.addModal = false;
     },
-    toggleViewNoteModal(state) {
-      state.viewModal = !state.viewModal;
+    openViewNoteModal(state) {
+      state.viewModal = true;
+    },
+    closeViewNoteModal(state) {
+      state.viewModal = false;
     },
     switchDisplay(state, action) {
       state.currentDisplay = action.payload;
@@ -42,7 +45,8 @@ const actionsSlice = createSlice({
 export const {
   openNewNoteModal,
   closeNewNoteModal,
-  toggleViewNoteModal,
+  openViewNoteModal,
+  closeViewNoteModal,
   switchDisplay,
   toggleConfirmDelModal,
   setDelNoteId,

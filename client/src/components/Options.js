@@ -5,7 +5,12 @@ import { usePopper } from 'react-popper';
 import { IoEllipsisVertical } from 'react-icons/io5';
 import ColorPalette from './ColorPalette';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { toggleTrashNote, trashNoteAsync } from '../features/notes/notesSlice';
+import {
+  clearNote,
+  toggleTrashNote,
+  trashNoteAsync,
+} from '../features/notes/notesSlice';
+import { closeViewNoteModal } from '../features/actions/actionsSlice';
 
 const Options = ({ color, noteId }) => {
   const [visible, setVisibility] = useState(false);
@@ -18,14 +23,13 @@ const Options = ({ color, noteId }) => {
     referenceRef.current,
     popperRef.current,
     {
-      placement: 'bottom',
+      placement: 'top',
       modifiers: [
         {
           name: 'offset',
           enabled: true,
           options: {
             offset: [0, 10],
-            offset: [20, 0],
           },
         },
       ],
@@ -49,6 +53,8 @@ const Options = ({ color, noteId }) => {
     console.log(noteId);
     dispatch(toggleTrashNote(noteId));
     dispatch(trashNoteAsync(noteId));
+    dispatch(closeViewNoteModal());
+    dispatch(clearNote());
   };
 
   return (
@@ -67,7 +73,11 @@ const Options = ({ color, noteId }) => {
       >
         <OutsideClickHandler onOutsideClick={hide}>
           <OptionList style={styles.offset} visible={visible}>
-            <ColorPalette color={color} noteId={noteId} />
+            <ColorPalette
+              color={color}
+              noteId={noteId}
+              handleOptionsClick={handleOptionsClick}
+            />
             <OptionListItems>
               <li onClick={handleDeleteNote}>Delete note</li>
               <li>Make a copy</li>
@@ -91,6 +101,7 @@ const OptionsWrap = styled.div`
 
   .optionsContainer {
     z-index: 9999;
+    margin-left: -50px;
   }
 `;
 
@@ -109,10 +120,14 @@ const OptionIconButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
 `;
 
 const OptionListItems = styled.ul`

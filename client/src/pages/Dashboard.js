@@ -7,8 +7,7 @@ import SideNav from '../components/SideNav';
 import AddNoteButton from '../components/AddNoteButton';
 import AddNoteModal from '../components/AddNoteModal';
 import ViewNote from '../components/ViewNote';
-
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import Header from '../components/Header';
 
 const Dashboard = () => {
   const { currentDisplay } = useSelector((state) => state.actions);
@@ -24,6 +23,7 @@ const Dashboard = () => {
 
   return (
     <DashboardWrap>
+      <Header />
       <SideNav />
       <AddNoteButton />
       <AddNoteModal />

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { IoChevronBack } from 'react-icons/io5';
-import { toggleViewNoteModal } from '../features/actions/actionsSlice';
+import { closeViewNoteModal } from '../features/actions/actionsSlice';
 import {
   updateNote,
   updateNoteAsync,
   clearNote,
 } from '../features/notes/notesSlice';
 import TimeAgo from './TimeAgo';
+import Options from './Options';
 
 const ViewNote = () => {
   const { viewModal } = useSelector((state) => state.actions);
@@ -31,7 +32,7 @@ const ViewNote = () => {
 
   const closeViewModal = () => {
     document.body.style.overflow = 'auto';
-    dispatch(toggleViewNoteModal());
+    dispatch(closeViewNoteModal());
     dispatch(clearNote());
   };
 
@@ -81,7 +82,12 @@ const ViewNote = () => {
             {editBody}
           </ViewNoteBody>
         </NoteInfo>
-        <div className="action-btn-wrap bottom"></div>
+        <div
+          className="action-btn-wrap bottom"
+          style={{ backgroundColor: note.color }}
+        >
+          <Options color={note.color} noteId={note._id} />
+        </div>
       </ViewNoteModal>
     </ViewNoteWrap>
   );
@@ -137,8 +143,8 @@ const ViewNoteModal = styled.div`
   }
 
   .bottom {
+    display: flex;
     bottom: 0;
-    background-color: #333;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
   }

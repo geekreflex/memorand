@@ -3,13 +3,16 @@ import styled from 'styled-components';
 import Options from './Options';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeNote } from '../features/notes/notesSlice';
-import { toggleViewNoteModal } from '../features/actions/actionsSlice';
+import { openViewNoteModal } from '../features/actions/actionsSlice';
 import TrashOptions from '../components/TrashOptions';
 
 const Note = ({ note, match, view }) => {
   const truncateNote = () => {
-    let shortNote = note.body.slice(0, 100);
-    return shortNote.slice(0, shortNote.lastIndexOf(' '));
+    if (note.body.length > 100) {
+      let shortNote = note.body.slice(0, 100);
+      return shortNote.slice(0, shortNote.lastIndexOf(' '));
+    }
+    return note.body;
   };
 
   const dispatch = useDispatch();
@@ -22,7 +25,7 @@ const Note = ({ note, match, view }) => {
     console.log(match);
 
     dispatch(storeNote(note._id));
-    dispatch(toggleViewNoteModal());
+    dispatch(openViewNoteModal());
   };
 
   return (
@@ -37,7 +40,7 @@ const Note = ({ note, match, view }) => {
       onClick={(e) => showNote(e)}
     >
       <NoteContent>
-        <h4>{note.title}</h4>
+        <h4>{note.title || 'Untitled'}</h4>
         <p>{truncateNote()}</p>
       </NoteContent>
       {view === 'trash' ? (

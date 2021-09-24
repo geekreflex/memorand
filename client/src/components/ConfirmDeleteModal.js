@@ -74,7 +74,12 @@ const ConfirmDelModal = styled.div`
     font-size: 14px;
     font-weight: 600;
     margin-left: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
   }
 `;
 
