@@ -86,6 +86,7 @@ const ViewNote = () => {
           className="action-btn-wrap bottom"
           style={{ backgroundColor: note.color }}
         >
+          <CloseBtn onClick={closeViewModal}>Close</CloseBtn>
           <Options color={note.color} noteId={note._id} />
         </div>
       </ViewNoteModal>
@@ -144,6 +145,8 @@ const ViewNoteModal = styled.div`
 
   .bottom {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     bottom: 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -193,6 +196,24 @@ const ButtonIconBack = styled.button`
   padding: 5px 0;
   color: #ddd;
   cursor: pointer;
+`;
+
+const CloseBtn = styled.button`
+  position: relative;
+  z-index: 999;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #ddd;
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
 `;
 
 export default ViewNote;

@@ -120,6 +120,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { getUserInfoFromStorage } = userSlice.actions;
+export const { getUserInfoFromStorage, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -22,6 +22,7 @@ const SideNav = () => {
         <div className="nav-list-wrap">
           <ul>
             <li
+              title="Notes"
               onClick={() => handleDisplaySwitch('notes')}
               className={currentDisplay === 'notes' ? 'highlight' : ''}
             >
@@ -32,6 +33,7 @@ const SideNav = () => {
             </li>
 
             <li
+              title="Trash"
               onClick={() => handleDisplaySwitch('trash')}
               className={currentDisplay === 'trash' ? 'highlight' : ''}
             >
@@ -42,6 +44,7 @@ const SideNav = () => {
             </li>
 
             <li
+              title="Labels"
               onClick={() => handleDisplaySwitch('labels')}
               className={currentDisplay === 'labels' ? 'highlight' : ''}
             >

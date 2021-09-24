@@ -27,10 +27,10 @@ const TrashOptions = ({ noteId }) => {
 
   return (
     <TrashOptionsWrap>
-      <div onClick={handleRestoreNote}>
+      <div onClick={handleRestoreNote} title="Restore Note">
         <IoArrowUndoOutline />
       </div>
-      <div onClick={handleConfirmNoteDelete}>
+      <div onClick={handleConfirmNoteDelete} title="Delete Note">
         <IoTrashOutline />
       </div>
     </TrashOptionsWrap>
