@@ -29,7 +29,7 @@ const AddButton = styled.button`
   border-radius: 50%;
   cursor: pointer;
   font-size: 40px;
-  border: 2px solid #5f6368;
+  border: 5px solid #5f6368;
   color: #202124;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   background-color: #ddd;
@@ -37,7 +37,7 @@ const AddButton = styled.button`
   z-index: 99;
 
   @media only screen and (max-width: 600px) {
-    bottom: 70px;
+    bottom: 100px;
   }
 `;
 

@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 import { IoCloseSharp, IoSearchSharp } from 'react-icons/io5';
+import { setSearchValue } from '../features/notes/notesSlice';
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
+  const { searchValue } = useSelector((state) => state.notes);
+
+  const handleSearch = (e) => {
+    dispatch(setSearchValue(e.target.value));
+  };
+
   return (
     <SearchWrap>
       <span>
@@ -10,7 +19,7 @@ const SearchBar = () => {
           <IoSearchSharp />
         </i>
       </span>
-      <input placeholder="Search" />
+      <input placeholder="Search" value={searchValue} onChange={handleSearch} />
       <span>
         <i>
           <IoCloseSharp />

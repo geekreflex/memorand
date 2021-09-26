@@ -43,6 +43,7 @@ const ConfirmDelModalWrap = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 99999;
+  padding: 0 20px;
 `;
 
 const ConfirmDelModal = styled.div`
@@ -56,6 +57,10 @@ const ConfirmDelModal = styled.div`
   z-index: 9;
   border-radius: 5px;
   border: 1px solid #5f6368;
+
+  @media only screen and (max-width: 600px) {
+    min-width: 100%;
+  }
 
   p {
     margin-bottom: 30px;

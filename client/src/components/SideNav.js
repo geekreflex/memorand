@@ -106,7 +106,7 @@ const WebNav = styled.div`
   background-color: #202124;
   z-index: 9999;
   overflow: hidden;
-  transition: width 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 
   .highlight i {
     background-color: #555;
@@ -170,7 +170,7 @@ const WebNav = styled.div`
 const MobNav = styled.div`
   position: fixed;
   display: none;
-  background-color: #202124;
+  /* background-color: #202124; */
   bottom: 0;
   left: 0;
   width: 100%;
@@ -178,15 +178,18 @@ const MobNav = styled.div`
   z-index: 9999;
   justify-content: center;
   align-items: center;
-  /* border-top: 1px solid #ddd; */
-  box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.5);
+  padding: 10px 0;
 
   @media only screen and (max-width: 600px) {
     display: flex;
   }
 
   .nav-list-wrap {
-    width: 100%;
+    background-color: red;
+    min-width: 300px;
+    border-radius: 50px;
+    background-color: #202124;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
   }
 
   .nav-list-wrap ul {
@@ -204,7 +207,7 @@ const MobNav = styled.div`
     justify-content: center;
     align-items: center;
     line-height: 1;
-    color: #999;
+    color: #888;
     cursor: pointer;
   }
 
@@ -218,7 +221,6 @@ const MobNav = styled.div`
   }
 
   .highlight {
-    background-color: rgba(255, 255, 255, 0.2);
     color: #ddd !important;
   }
 `;

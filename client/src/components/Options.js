@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { usePopper } from 'react-popper';
 import { IoEllipsisVertical } from 'react-icons/io5';
 import ColorPalette from './ColorPalette';
 import OutsideClickHandler from 'react-outside-click-handler';
 import {
   clearNote,
+  createNoteAsync,
   toggleTrashNote,
   trashNoteAsync,
 } from '../features/notes/notesSlice';
@@ -18,12 +19,13 @@ const Options = ({ color, noteId }) => {
   const popperRef = useRef(null);
 
   const dispatch = useDispatch();
+  const { notes } = useSelector((state) => state.notes);
 
   const { styles, attributes, update } = usePopper(
     referenceRef.current,
     popperRef.current,
     {
-      placement: 'top',
+      placement: 'bottom',
       modifiers: [
         {
           name: 'offset',
@@ -57,6 +59,19 @@ const Options = ({ color, noteId }) => {
     dispatch(clearNote());
   };
 
+  const handleDuplicateNote = () => {
+    const existingNote = notes.find((note) => note._id === noteId);
+    if (existingNote) {
+      const payload = {
+        title: existingNote.title,
+        body: existingNote.body,
+        color: existingNote.color,
+      };
+
+      dispatch(createNoteAsync(payload));
+    }
+  };
+
   return (
     <OptionsWrap>
       <OutsideClickHandler onOutsideClick={hide}>
@@ -64,7 +79,7 @@ const Options = ({ color, noteId }) => {
           <IoEllipsisVertical />
         </OptionIconButton>
       </OutsideClickHandler>
-      <div
+      <OptionsContainer
         className="optionsContainer"
         ref={popperRef}
         style={styles.popper}
@@ -80,12 +95,12 @@ const Options = ({ color, noteId }) => {
             />
             <OptionListItems>
               <li onClick={handleDeleteNote}>Delete note</li>
-              <li>Make a copy</li>
+              <li onClick={handleDuplicateNote}>Make a copy</li>
               <li>Add label</li>
             </OptionListItems>
           </OptionList>
         </OutsideClickHandler>
-      </div>
+      </OptionsContainer>
     </OptionsWrap>
   );
 };
@@ -98,11 +113,11 @@ const OptionsWrap = styled.div`
   justify-content: flex-end;
   padding: 10px;
   bottom: 0;
+`;
 
-  .optionsContainer {
-    z-index: 9999;
-    margin-left: -50px;
-  }
+const OptionsContainer = styled.div`
+  z-index: 9999;
+  margin-left: -50px;
 `;
 
 const OptionList = styled.div`
@@ -127,6 +142,9 @@ const OptionIconButton = styled.div`
   font-size: 16px;
   &:hover {
     background-color: rgba(255, 255, 255, 0.3);
+  }
+  @media only screen and (max-width: 600px) {
+    margin-right: 20px;
   }
 `;
 

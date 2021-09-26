@@ -10,7 +10,9 @@ import ViewNote from '../components/ViewNote';
 import Header from '../components/Header';
 
 const Dashboard = () => {
-  const { currentDisplay } = useSelector((state) => state.actions);
+  const { currentDisplay, optionsOverlay } = useSelector(
+    (state) => state.actions
+  );
 
   const renderDisplay = () => {
     switch (currentDisplay) {
@@ -25,8 +27,14 @@ const Dashboard = () => {
     <DashboardWrap>
       <Header />
       <SideNav />
-      <AddNoteButton />
-      <AddNoteModal />
+      {currentDisplay === 'notes' ? (
+        <>
+          <AddNoteButton />
+          <AddNoteModal />
+        </>
+      ) : (
+        ''
+      )}
       <ViewNote />
       <DisplayWrap>{renderDisplay()}</DisplayWrap>
     </DashboardWrap>

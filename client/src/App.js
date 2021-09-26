@@ -21,8 +21,9 @@ const App = () => {
         <Switch>
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={Register} />
-          <ProtectedRoute exact path="/" component={Dashboard} />
-          <Redirect to="/" />
+          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/" component={Login} />
+          <Redirect to="/dashboard" />
         </Switch>
       </div>
     </Router>

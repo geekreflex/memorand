@@ -12,7 +12,7 @@ import TimeAgo from './TimeAgo';
 import Options from './Options';
 
 const ViewNote = () => {
-  const { viewModal } = useSelector((state) => state.actions);
+  const { viewModal, currentDisplay } = useSelector((state) => state.actions);
   const { note } = useSelector((state) => state.notes);
 
   const [title, setTitle] = useState('');
@@ -58,7 +58,7 @@ const ViewNote = () => {
         <NoteInfo>
           <TimeAgo timestamp={note.updatedAt} />
           <ViewNoteTitle
-            contentEditable="true"
+            contentEditable={currentDisplay === 'notes' ? 'true' : 'false'}
             role="textbox"
             aria-multiline="true"
             dir="ltr"
@@ -67,10 +67,10 @@ const ViewNote = () => {
             onBlur={saveNoteChanges}
             onInput={(e) => setTitle(e.currentTarget.textContent)}
           >
-            {editTitle}
+            {editTitle || 'Untitled'}
           </ViewNoteTitle>
           <ViewNoteBody
-            contentEditable="true"
+            contentEditable={currentDisplay === 'notes' ? 'true' : 'false'}
             role="textbox"
             aria-multiline="true"
             dir="ltr"
@@ -87,7 +87,11 @@ const ViewNote = () => {
           style={{ backgroundColor: note.color }}
         >
           <CloseBtn onClick={closeViewModal}>Close</CloseBtn>
-          <Options color={note.color} noteId={note._id} />
+          {currentDisplay === 'notes' ? (
+            <Options color={note.color} noteId={note._id} />
+          ) : (
+            ''
+          )}
         </div>
       </ViewNoteModal>
     </ViewNoteWrap>
@@ -127,7 +131,7 @@ const ViewNoteModal = styled.div`
     z-index: 999999;
     .action-btn-wrap {
       display: flex !important;
-      position: absolute;
+      position: fixed;
       align-items: center;
       padding: 0 20px;
     }

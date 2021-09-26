@@ -8,6 +8,7 @@ const initialState = {
   currentDisplay: 'notes',
   delNoteId: '',
   initialColor: '#202124',
+  optionsOverlay: false,
 };
 
 const actionsSlice = createSlice({
@@ -38,6 +39,9 @@ const actionsSlice = createSlice({
     },
     switchInitialColor(state, action) {
       state.initialColor = action.payload;
+    },
+    setOptionsOverlay(state, action) {
+      state.optionsOverlay = action.payload;
     },
   },
 });

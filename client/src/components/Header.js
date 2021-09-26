@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import Account from './Account';
+import MobileSearchBar from './MobileSearchBar';
 import { IoSearchSharp } from 'react-icons/io5';
 
 const Header = () => {
@@ -9,6 +10,7 @@ const Header = () => {
     <HeaderWrap>
       <div className="container">
         <HeaderInner>
+          <MobileSearchBar />
           <div className="hd-wrap left">
             <Logo>M</Logo>
             <MobSearchIcon>

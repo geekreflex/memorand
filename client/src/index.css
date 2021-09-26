@@ -33,6 +33,10 @@ ul {
   list-style: none;
 }
 
+a {
+  color: deepskyblue;
+}
+
 .bordered {
   border: 2px solid #888 !important;
 }
@@ -95,4 +99,92 @@ html {
 
 html {
   -webkit-tap-highlight-color: transparent;
+}
+
+.form-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  padding: 0 20px;
+  color: #ddd;
+}
+
+.form-main h1 {
+  margin-bottom: 20px;
+  color: #999;
+}
+
+.form-wrap {
+  min-width: 400px;
+}
+
+.form-name-wrap {
+  width: 100%;
+  display: flex;
+}
+
+.form-name-wrap div:last-child {
+  margin-left: 20px;
+}
+
+.form-name-wrap div {
+  width: 100%;
+}
+
+.form-wrap > form > div {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-wrap > form {
+  margin-bottom: 20px;
+}
+.form-wrap div input {
+  width: 100%;
+  height: 45px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-wrap div input::placeholder {
+  color: #333;
+}
+
+.form-wrap div button {
+  width: 100%;
+  height: 45px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ddd;
+  background-color: #335659;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-wrap {
+    min-width: 100%;
+  }
+  .form-name-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-name-wrap div:last-child {
+    margin-left: 0;
+  }
+
+  .form-name-wrap div:first-child {
+    margin-bottom: 20px;
+  }
 }

@@ -8,6 +8,7 @@ const initialState = {
   note: {},
   status: 'idle',
   error: null,
+  searchValue: '',
 };
 
 export const createNoteAsync = createAsyncThunk(
@@ -208,6 +209,12 @@ export const notesSlice = createSlice({
       state.notes = notes;
       console.log(notes);
     },
+    setSearchValue(state, action) {
+      state.searchValue = action.payload;
+    },
+    clearSearchValue(state) {
+      state.searchValue = '';
+    },
   },
   extraReducers: {
     [getNotesAsync.pending]: (state) => {
@@ -253,5 +260,7 @@ export const {
   updateNote,
   toggleTrashNote,
   deleteNote,
+  setSearchValue,
+  clearSearchValue,
 } = notesSlice.actions;
 export default notesSlice.reducer;
