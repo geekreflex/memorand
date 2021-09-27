@@ -94,7 +94,7 @@ export const userSlice = createSlice({
       state.status = 'idle';
       state.user = action.payload;
       localStorage.setItem('userInfo', JSON.stringify(action.payload));
-      window.location.href = '/notes';
+      window.location.href = '/dashboard';
       console.log(action);
     },
     [registerUserAsync.rejected]: (state, action) => {
@@ -111,7 +111,7 @@ export const userSlice = createSlice({
       state.status = 'idle';
       state.user = action.payload;
       localStorage.setItem('userInfo', JSON.stringify(action.payload));
-      window.location.href = '/notes';
+      window.location.href = '/dashboard';
       console.log(action);
     },
     [loginUserAsync.rejected]: (state, action) => {

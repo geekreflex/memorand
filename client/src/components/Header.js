@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import Account from './Account';
 import MobileSearchBar from './MobileSearchBar';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -11,7 +12,9 @@ const Header = () => {
         <HeaderInner>
           <MobileSearchBar />
           <div className="hd-wrap left">
-            <Logo>M</Logo>
+            <Link to="/">
+              <Logo>M</Logo>
+            </Link>
             <SearchBar />
           </div>
 
@@ -32,6 +35,10 @@ const HeaderWrap = styled.div`
   border-bottom: 1px solid #5f6368;
   background-color: #202124;
   z-index: 99999;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 const HeaderInner = styled.div`
