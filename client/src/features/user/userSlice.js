@@ -99,6 +99,7 @@ export const userSlice = createSlice({
     },
     [registerUserAsync.rejected]: (state, action) => {
       state.status = 'idle';
+      state.error = action.payload;
       console.log(action);
     },
 
@@ -115,6 +116,7 @@ export const userSlice = createSlice({
     },
     [loginUserAsync.rejected]: (state, action) => {
       state.status = 'idle';
+      state.error = action.payload;
       console.log(action);
     },
   },

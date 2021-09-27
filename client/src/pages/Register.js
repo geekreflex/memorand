@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import Error from '../components/Error';
 import { registerUserAsync } from '../features/user/userSlice';
 
 const Register = () => {
@@ -27,6 +28,7 @@ const Register = () => {
     <div className="form-main">
       <h1>Create account</h1>
       <div className="form-wrap">
+        <Error />
         <form onSubmit={onSubmitRegister}>
           <div className="form-name-wrap">
             <div>
@@ -62,7 +64,7 @@ const Register = () => {
           </div>
           <div>
             <input
-              type="text"
+              type="password"
               name="password"
               value={password}
               placeholder="Password"

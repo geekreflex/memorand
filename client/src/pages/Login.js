@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { loginUserAsync } from '../features/user/userSlice';
 import { useDispatch } from 'react-redux';
+import Error from '../components/Error';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,6 +23,7 @@ const Login = () => {
     <div className="form-main">
       <h1>Welcome back!</h1>
       <div className="form-wrap">
+        <Error />
         <form onSubmit={onSubmitLogin}>
           <div>
             <input
@@ -35,7 +37,7 @@ const Login = () => {
           </div>
           <div>
             <input
-              type="text"
+              type="password"
               name="password"
               placeholder="Enter Password"
               value={password}

@@ -96,7 +96,6 @@ const Options = ({ color, noteId }) => {
             <OptionListItems>
               <li onClick={handleDeleteNote}>Delete note</li>
               <li onClick={handleDuplicateNote}>Make a copy</li>
-              <li>Add label</li>
             </OptionListItems>
           </OptionList>
         </OutsideClickHandler>
