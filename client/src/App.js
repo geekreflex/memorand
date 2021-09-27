@@ -11,6 +11,7 @@ import { PublicRoute, ProtectedRoute } from './helper/authRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
 
 // Components
 
@@ -22,8 +23,8 @@ const App = () => {
           <PublicRoute exact path="/login" component={Login} />
           <PublicRoute exact path="/register" component={Register} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/" component={Login} />
-          <Redirect to="/dashboard" />
+          <Route exact path="/" component={Home} />
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>
