@@ -182,7 +182,11 @@ const ModalAction = styled.div`
   }
   @media only screen and (max-width: 600px) {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
+
+    .btn-action button {
+      margin-top: 20px;
+    }
   }
 `;
 

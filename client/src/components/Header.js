@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import Account from './Account';
 import MobileSearchBar from './MobileSearchBar';
-import { IoSearchSharp } from 'react-icons/io5';
 
 const Header = () => {
   return (
@@ -13,9 +12,6 @@ const Header = () => {
           <MobileSearchBar />
           <div className="hd-wrap left">
             <Logo>M</Logo>
-            <MobSearchIcon>
-              <IoSearchSharp />
-            </MobSearchIcon>
             <SearchBar />
           </div>
 
@@ -47,11 +43,11 @@ const HeaderInner = styled.div`
   /* padding: 0 100px; */
   .hd-wrap {
     display: flex;
+
     align-items: center;
-    /* width: 50%; */
   }
   .left {
-    width: 70%;
+    width: 100%;
   }
   .right {
     margin-left: 20px;
@@ -59,22 +55,6 @@ const HeaderInner = styled.div`
   }
   @media only screen and (max-width: 600px) {
     padding: 0;
-  }
-`;
-
-const MobSearchIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  background-color: #333;
-  font-size: 20px;
-  color: #ddd;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-
-  @media only screen and (max-width: 600px) {
-    display: flex;
   }
 `;
 

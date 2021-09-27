@@ -9,6 +9,7 @@ const initialState = {
   delNoteId: '',
   initialColor: '#202124',
   optionsOverlay: false,
+  mobSearch: false,
 };
 
 const actionsSlice = createSlice({
@@ -40,8 +41,8 @@ const actionsSlice = createSlice({
     switchInitialColor(state, action) {
       state.initialColor = action.payload;
     },
-    setOptionsOverlay(state, action) {
-      state.optionsOverlay = action.payload;
+    toggleMobSearch(state) {
+      state.mobSearch = !state.mobSearch;
     },
   },
 });
@@ -55,6 +56,7 @@ export const {
   toggleConfirmDelModal,
   setDelNoteId,
   switchInitialColor,
+  toggleMobSearch,
 } = actionsSlice.actions;
 
 export default actionsSlice.reducer;

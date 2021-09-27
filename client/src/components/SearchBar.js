@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoCloseSharp, IoSearchSharp } from 'react-icons/io5';
-import { setSearchValue } from '../features/notes/notesSlice';
+import { clearSearchValue, setSearchValue } from '../features/notes/notesSlice';
 
 const SearchBar = () => {
   const dispatch = useDispatch();
@@ -10,6 +10,10 @@ const SearchBar = () => {
 
   const handleSearch = (e) => {
     dispatch(setSearchValue(e.target.value));
+  };
+
+  const handleClearSearch = () => {
+    dispatch(clearSearchValue());
   };
 
   return (
@@ -21,7 +25,10 @@ const SearchBar = () => {
       </span>
       <input placeholder="Search" value={searchValue} onChange={handleSearch} />
       <span>
-        <i>
+        <i
+          onClick={handleClearSearch}
+          style={{ visibility: searchValue ? 'visible' : 'hidden' }}
+        >
           <IoCloseSharp />
         </i>
       </span>
@@ -64,9 +71,8 @@ const SearchWrap = styled.div`
       }
     }
   }
-
   @media only screen and (max-width: 600px) {
-    display: none;
+    display: none !important;
   }
 `;
 

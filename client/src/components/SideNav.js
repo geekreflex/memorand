@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   IoDocumentTextOutline,
   IoTrashOutline,
-  IoPricetagsOutline,
+  IoSearchSharp,
 } from 'react-icons/io5';
-import { switchDisplay } from '../features/actions/actionsSlice';
+import {
+  switchDisplay,
+  toggleMobSearch,
+} from '../features/actions/actionsSlice';
 
 const SideNav = () => {
   const dispatch = useDispatch();
@@ -14,6 +17,10 @@ const SideNav = () => {
 
   const handleDisplaySwitch = (display) => {
     dispatch(switchDisplay(display));
+  };
+
+  const handleSearchClick = () => {
+    dispatch(toggleMobSearch());
   };
 
   return (
@@ -42,17 +49,6 @@ const SideNav = () => {
               </i>
               <span>Trash</span>
             </li>
-
-            <li
-              title="Labels"
-              onClick={() => handleDisplaySwitch('labels')}
-              className={currentDisplay === 'labels' ? 'highlight' : ''}
-            >
-              <i>
-                <IoPricetagsOutline />
-              </i>
-              <span>Labels</span>
-            </li>
           </ul>
         </div>
       </WebNav>
@@ -80,13 +76,13 @@ const SideNav = () => {
             </li>
 
             <li
-              onClick={() => handleDisplaySwitch('labels')}
+              onClick={handleSearchClick}
               className={currentDisplay === 'labels' ? 'highlight' : ''}
             >
               <i>
-                <IoPricetagsOutline />
+                <IoSearchSharp />
               </i>
-              <span>Labels</span>
+              <span>Search</span>
             </li>
           </ul>
         </div>
@@ -170,11 +166,9 @@ const WebNav = styled.div`
 const MobNav = styled.div`
   position: fixed;
   display: none;
-  /* background-color: #202124; */
   bottom: 0;
   left: 0;
   width: 100%;
-  /* height: 60px; */
   z-index: 9999;
   justify-content: center;
   align-items: center;
