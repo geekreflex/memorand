@@ -23,8 +23,8 @@ const NoteList = ({ match }) => {
   const searchNotes = () => {
     const searchResult = notes.filter(
       (note) =>
-        note.title.toLowerCase().includes(searchValue) ||
-        note.body.toLowerCase().includes(searchValue)
+        note.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        note.body.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     setNotesSearch(searchResult);
